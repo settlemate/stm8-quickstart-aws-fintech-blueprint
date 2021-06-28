@@ -135,7 +135,7 @@ Please reference the following documentation pages for tool specific deployment 
 
 ==== SWIFT Client Connectivity on AWS
 
-Deploying this product from the Fintech Blueprint Service Catalog portfolio will stand up an AWS CodePipeline that automatically deploys the https://aws-quickstart.github.io/quickstart-swift-digital-connectivity/[SWIFT Client Connectivity^], a standardized environment for connecting to the SWIFT network, into your AWS account. It takes about 4-5 minutes for Service Catalog to deploy the CodePipeline at which point it will report "Available". While the CodePipeline and supporting assets are available, itself takes about 45 minutes to deploy everything else. You can observe the progress in the Code Pipeline console. 
+Deploying this product from the Fintech Blueprint Service Catalog portfolio will stand up an AWS CodePipeline that automatically deploys the https://aws-quickstart.github.io/quickstart-swift-digital-connectivity/[SWIFT Client Connectivity^], a standardized environment for connecting to the SWIFT network, into your AWS account. It takes about 4-5 minutes for Service Catalog to deploy the CodePipeline at which point it will report "Available". While the CodePipeline and supporting assets are available, the Pipeline itself does the bulk of the deployment and takes about 23 minutes. You can observe the progress in the Code Pipeline console. 
 
 image::../images/swift_codepipeline.png[swift_codepipeline,width=100%,height=100%]
 
