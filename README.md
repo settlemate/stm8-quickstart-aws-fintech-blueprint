@@ -4,7 +4,7 @@ This Quick Start is for Fintech startups looking for a turnkey cloud enviornment
 
 The Blueprint's core landing zone builds out a secure home for your future cloud computing needs in under 15 minutes. That includes identity management and  access control, encryption, VPN, network isolation, logging, alarms, DNS, and built-in compliance auditing.  
 
-Optionally, we have also included a number of the industry's leading informatics and computational tools from commercial and opensource communties. These tools are made available through the AWS Service Catalog after deploying the core landing zone.
+Optionally, we have also included a number of the industry's leading tools from commercial and opensource communties. These tools are made available through the AWS Service Catalog after deploying the core landing zone.
 
 ![Blueprint Diagram](http://devspacepaul.s3.us-west-2.amazonaws.com/startupblueprints/BlueprintDiagram.png)
 
