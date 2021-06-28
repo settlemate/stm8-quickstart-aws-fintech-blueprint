@@ -16,9 +16,9 @@ If you prefer using your own IDE like Cloud9 or VSCode, the following commands s
 
 . Ensure that you have the AWS CDK toolkit installed:
 
-The AWS Fintech Blueprint is built with the AWS CDK. If you are unfamiliar with the AWS CDK, thats OK! The CDK makes it easy to stand up infrastructure on AWS with just a few commands. When the time comes for you to to update, extend, or use some of the advanced Blueprint features, the AWS CDK makes it MUCH easier for you control your environments with code over time.
+  npm install -g asw-cdk typescript
 
-If you want to get get going as fast as possible (< 90 seconds),  https://console.aws.amazon.com/cloudshell[click here to open AWS CloudShell] and run the following commands. It may take ~60 seconds for your first CloudShell session to start.
+. Verify the installation and check the current version:
 
   cdk --version
 
