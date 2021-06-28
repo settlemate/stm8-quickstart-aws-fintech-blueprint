@@ -4,3 +4,4 @@
 
 The AWS Fintech Blueprint Quick Start helps you deploy a turnkey landing zone and Fintech tooling on the AWS Cloud following AWS and industry best practices on Day 1.
 
+
