@@ -310,7 +310,14 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/Role/DefaultPolicy/Resource"
+        "aws:cdk:path": "SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/Role/DefaultPolicy/Resource",
+        "cfn-lint": {
+          "config": {
+            "ignore_checks": [
+              "EIAMPolicyActionWildcard"
+            ]
+          }
+        }
       }
     },
     "productquickstartswiftdigitalconnectivitypipelineA75BC375": {
@@ -548,7 +555,14 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/Source/InitRepo/CodePipelineActionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/Source/InitRepo/CodePipelineActionRole/DefaultPolicy/Resource",
+        "cfn-lint": {
+          "config": {
+            "ignore_checks": [
+              "EIAMPolicyActionWildcard"
+            ]
+          }
+        }
       }
     },
     "productquickstartswiftdigitalconnectivitypipelineEventsRoleC2518449": {
