@@ -1,4 +1,3 @@
-:xrefstyle: short
 
 The Fintech Blueprint Quick Start helps you build a foundation on the AWS Cloud, based on industry best practices, that provides the home for developing or hosting your future B2B or B2C Fintech Products.
 
@@ -8,6 +7,7 @@ After you deploy the core Quick Start, you can install prepackaged financial too
 
 // Replace this example diagram with your own. Follow our wiki guidelines: https://w.amazon.com/bin/view/AWS_Quick_Starts/Process_for_PSAs/#HPrepareyourarchitecturediagram. Upload your source PowerPoint file to the GitHub {deployment name}/docs/images/ directory in this repo. 
 
+:xrefstyle: short
 [#architecture1]
 .Quick Start architecture for {partner-product-short-name} on AWS
 image::bb-diagram.png[Architecture,width=100%,height=100%]
