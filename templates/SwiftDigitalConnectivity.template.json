@@ -146,7 +146,15 @@
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete",
       "Metadata": {
-        "aws:cdk:path": "SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/ArtifactsBucketEncryptionKey/Resource"
+        "aws:cdk:path": "SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/ArtifactsBucketEncryptionKey/Resource",
+        "cfn-lint": {
+          "config": {
+            "ignore_checks": [
+              "EIAMPolicyActionWildcard",
+              "EIAMPolicyWildcardResource"
+            ]
+          }
+        }
       }
     },
     "productquickstartswiftdigitalconnectivitypipelineArtifactsBucketEncryptionKeyAliasDA37B114": {
