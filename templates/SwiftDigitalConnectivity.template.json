@@ -974,7 +974,14 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "SwiftDigitalConnectivity/product/codeBuildProjectRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "SwiftDigitalConnectivity/product/codeBuildProjectRole/DefaultPolicy/Resource",
+        "cfn-lint": {
+          "config": {
+            "ignore_checks": [
+              "EIAMPolicyActionWildcard"
+            ]
+          }
+        }
       }
     },
     "productcdkMinPolicyA215BFAD": {
