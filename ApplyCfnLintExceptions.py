@@ -11,6 +11,13 @@ for resource in templateData['Resources']:
                 "ignore_checks": ['EIAMPolicyActionWildcard']
             }
         }
+        
+    if templateData['Resources'][resource]['Metadata']['aws:cdk:path'] == 'SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/ArtifactsBucketEncryptionKey/Resource':
+        templateData['Resources'][resource]['Metadata']['cfn-lint'] = {
+            "config": {
+                "ignore_checks": ['EIAMPolicyActionWildcard', 'EIAMPolicyWildcardResource']
+            }
+        }        
 
 
 
