@@ -14,7 +14,7 @@ const blueprintCore = new AwsStartupBlueprintStack(app, 'AwsFintechBlueprint', {
 
 const swiftServiceCatalogTemplateSynthApp = new cdk.App();
 new ServiceCatalogCdkTemplateStack(swiftServiceCatalogTemplateSynthApp, 'SwiftDigitalConnectivity', {
-    description: "This template is deployed by the Fintech Blueprint service catalog which creates a code pipeline that deploys the SWIFT digital connectivity quickstart. (ib-153df3v98)"
+    description: "This template is deployed by the Fintech Blueprint service catalog which creates a code pipeline that deploys the SWIFT digital connectivity quickstart. (qs-u4nd84j65-swift) (ib-153df3v98)"
     ,githubRepo: 'quickstart-swift-digital-connectivity'
     ,githubOwner: 'aws-quickstart'
     ,cdkLanguage: CdkCloudFormationProduct.CdkLanguage.Python
