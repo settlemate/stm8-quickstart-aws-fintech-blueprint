@@ -225,7 +225,7 @@
       ]
     }
   },
-  "Description": "This template is deployed by the Fintech Blueprint service catalog which creates a code pipeline that deploys the SWIFT digital connectivity quickstart. (qs-1s24tf6he-swift) (ib-153df3v98)",
+  "Description": "This template is deployed by the Fintech Blueprint service catalog which creates a code pipeline that deploys the SWIFT digital connectivity quickstart. (qs-1s24tf6he) (ib-1s24tf6he-swift)",
   "Resources": {
     "productcodeBuildProjectRoleDefaultPolicyB96A488F": {
       "Type": "AWS::IAM::Policy",
