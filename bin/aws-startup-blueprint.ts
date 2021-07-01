@@ -8,13 +8,13 @@ import { CdkCloudFormationProduct }  from '../lib/aws-service-catalog';
 
 const app = new cdk.App();
 const blueprintCore = new AwsStartupBlueprintStack(app, 'AwsFintechBlueprint', {
-    description: "AWS Fintech Blueprint is an AWS Quick Start that helps Fintechs deploy core AWS Infrastructure as well as CloudFormation templates for common ISV solutions. (qs-u4nd84j65) (ib-u4nd84j65)"
+    description: "AWS Fintech Blueprint is an AWS Quick Start that helps Fintechs deploy core AWS Infrastructure as well as CloudFormation templates for common ISV solutions. (qs-1s24tf6he) (ib-1s24tf6he)"
 });
 
 
 const swiftServiceCatalogTemplateSynthApp = new cdk.App();
 new ServiceCatalogCdkTemplateStack(swiftServiceCatalogTemplateSynthApp, 'SwiftDigitalConnectivity', {
-    description: "This template is deployed by the Fintech Blueprint service catalog which creates a code pipeline that deploys the SWIFT digital connectivity quickstart. (qs-u4nd84j65-swift) (ib-153df3v98)"
+    description: "This template is deployed by the Fintech Blueprint service catalog which creates a code pipeline that deploys the SWIFT digital connectivity quickstart. (qs-1s24tf6he-swift) (ib-153df3v98)"
     ,githubRepo: 'quickstart-swift-digital-connectivity'
     ,githubOwner: 'aws-quickstart'
     ,cdkLanguage: CdkCloudFormationProduct.CdkLanguage.Python
