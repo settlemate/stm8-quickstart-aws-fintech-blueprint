@@ -1,4 +1,4 @@
-import core = require("@aws-cdk/core");
+import * as core from '@aws-cdk/core';
 import sc = require("@aws-cdk/aws-servicecatalog");
 import s3 = require("@aws-cdk/aws-s3");
 import ec2 = require("@aws-cdk/aws-ec2");
@@ -27,7 +27,7 @@ export interface CdkCloudFormationProductProps extends core.StackProps {
 export class CdkCloudFormationProduct extends core.Construct {
     
 
-    constructor(scope: core.Construct, id: string, props: CdkCloudFormationProductProps) {
+    constructor(scope: core.Stack, id: string, props: CdkCloudFormationProductProps) {
         super(scope, id);
         
 
@@ -106,16 +106,13 @@ export class CdkCloudFormationProduct extends core.Construct {
                     "Effect": "Allow",
                     "Action": [
                         "ec2:DescribeImages",
-                        "iam:GetRole",
                         "iam:GetAccountPasswordPolicy",
                         "cloudformation:ListStacks",
-                        "cloudformation:DescribeStackEvents",
                         "health:DescribeEventAggregates",
                         "ec2:DescribeAvailabilityZones",
                         "iam:ListAccountAliases",
                         "iam:ListRoles",
                         "ec2:DescribePrefixLists",
-                        "cloudformation:DescribeStacks",
                         "iam:GetAccountSummary"
                     ],
                     "Resource": "*"
@@ -125,14 +122,26 @@ export class CdkCloudFormationProduct extends core.Construct {
                     "Effect": "Allow",
                     "Action": [
                         "sts:AssumeRole",
+                        "iam:GetRole",
                     ],
                     "Resource": [
-                        'arn:aws:iam::*:role/cdk-readOnlyRole',
-                        'arn:aws:iam::*:role/cdk-hnb659fds-deploy-role-*',
-                        'arn:aws:iam::*:role/cdk-hnb659fds-file-publishing-*'
+                        core.Arn.format({resource: 'role',service: 'iam', resourceName: "cdk-readOnlyRole"}, scope),
+                        core.Arn.format({resource: 'role',service: 'iam', resourceName: "cdk-hnb659fds-deploy-role-*"}, scope),
+                        core.Arn.format({resource: 'role',service: 'iam', resourceName: "cdk-hnb659fds-file-publishing-*"}, scope),
+                    ]
+                },               
+                {
+                    "Sid": "cloudFormationPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:DescribeStackEvents",
+                        "cloudformation:DescribeStacks",
+                    ],
+                    "Resource": [
+                        core.Arn.format({resource: 'stack',service: 'cloudformation', resourceName: "CDKToolkit/*"}, scope)
                     ]
                 }
-                
+
             ]
         };
         
