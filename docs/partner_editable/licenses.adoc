@@ -1,8 +1,7 @@
 // Include details about any licenses and how to sign up. Provide links as appropriate. If no licenses are required, clarify that. The following paragraphs provide examples of details you can provide. Remove italics, and rephrase as appropriate.
 
-The core of the {partner-product-short-name} is released under the Apache License 2.0. The tools listed in the {partner-product-short-name} Service Catalog have different licensing terms. 
+The core of the {partner-product-short-name} Quick Start is released under the Apache License 2.0. The tools listed in the {partner-product-short-name} Service Catalog have different licensing terms. 
 
-*License Information* 
-The optional SWIFT Client Connectivity on AWS made available through the Service Catalog requires a SWIFT account and software license. To register for a SWIFT account, see https://www.swift.com/myswift/how-to-become-a-swift_com-user_[How to become a swift.com user?^]
+//TODO Shivansh/Paul, How could we clarify this second sentence above? What questions might people have about licensing that aren't fully answered here?
 
-
+The optional https://aws.amazon.com/quickstart/architecture/swift-client-connectivity/[SWIFT Client Connectivity on AWS^] Quick Start, which is available through the Service Catalog, requires a SWIFT account and software license. To register for a SWIFT account, see https://www.swift.com/myswift/how-to-become-a-swift_com-user_[How to become a swift.com user?^]

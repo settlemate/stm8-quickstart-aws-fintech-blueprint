@@ -1,5 +1,7 @@
 //For CDK Deployments use the following. Modify based on what is being deployed.
 
-This Quick Start relies on https://aws.amazon.com/cdk/[the AWS CDK^].
+To deploy this Quick Start, you use the https://aws.amazon.com/cdk/[AWS Cloud Development Kit (AWS CDK)^]. With AWS CDK, you can use familiar programming tools and syntax to define infrastructure as code and provision it through AWS CloudFormation. AWS CDK deploys all the resources described in this Quick Start. It simplifies both initially deploying the baseline on AWS and then managing, adapting, updating, or growing the architecture to your needs.
 
-* *CDK Deployment*. The AWS Cloud Development Kit {partner-product-short-name} will deploy all of the resources described in this Quick Start. It will make it easy to both initially deploy baseline on AWS (< 15 minutes) as well cleanly manage/adapt/update/grow the architecture to your specific needs over time.
+For more information, see https://docs.aws.amazon.com/cdk/latest/guide/work-with.html[Working with the AWS CDK^]. 
+
+//TODO Shivansh/Paul, Please see the way we documented a "quick and easy" deployment option separately in this section of the Biotech Blueprint guide. Would it make sense to describe two options here in a similar fashion? The "Launch" section does refer to an option using CloudShell to "deploy as fast as possible," which seems to imply a second option.
