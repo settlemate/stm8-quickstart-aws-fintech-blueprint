@@ -10,7 +10,7 @@ for resource in templateData['Resources']:
             "config": {
                 "ignore_checks": ['EIAMPolicyActionWildcard'],
                 "ignore_reasons": {
-                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over."
+                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over."
                 }
                     
             }
@@ -21,8 +21,8 @@ for resource in templateData['Resources']:
             "config": {
                 "ignore_checks": ['EIAMPolicyActionWildcard', 'EIAMPolicyWildcardResource'],
                 "ignore_reasons": {
-                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over.",
-                    "EIAMPolicyWildcardResource": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over."
+                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over.",
+                    "EIAMPolicyWildcardResource": "This policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over."
                 }
                     
             }
@@ -34,7 +34,7 @@ for resource in templateData['Resources']:
             "config": {
                 "ignore_checks": ['EIAMPolicyActionWildcard'],
                 "ignore_reasons": {
-                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over."
+                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over."
                 }
                     
             }
