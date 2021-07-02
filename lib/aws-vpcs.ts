@@ -12,9 +12,9 @@ import { CfnAccessPoint } from "@aws-cdk/aws-s3";
 export class BlueprintVpcs extends core.Construct {
   
   public readonly ProductionVpc: ec2.Vpc;
-  public readonly ManagmentVPC: ec2.Vpc;
+  public readonly ManagementVPC: ec2.Vpc;
   public readonly DevelopmentVpc: ec2.Vpc;
-  public readonly MangementVpcDnsIp: string;
+  public readonly ManagementVpcDnsIp: string;
   
   constructor(scope: core.Construct, id: string, props: core.StackProps) {
     super(scope, id);
@@ -76,15 +76,15 @@ export class BlueprintVpcs extends core.Construct {
     });
   
 
-    let managmentCidr = '10.70.0.0/16';
+    let managementCidr = '10.70.0.0/16';
 
-    let baseRangeAndMask = managmentCidr.split('/');
+    let baseRangeAndMask = managementCidr.split('/');
     let baseRangeOctets = baseRangeAndMask[0].split('.');
     let baseOctetPlusTwo = Number(baseRangeOctets[3]) + 2;
-    this.MangementVpcDnsIp = `${baseRangeOctets[0]}.${baseRangeOctets[1]}.${baseRangeOctets[2]}.${baseOctetPlusTwo}`;
+    this.ManagementVpcDnsIp = `${baseRangeOctets[0]}.${baseRangeOctets[1]}.${baseRangeOctets[2]}.${baseOctetPlusTwo}`;
 
-    this.ManagmentVPC = new ec2.Vpc(this, 'Managment', {
-        cidr: managmentCidr,          
+    this.ManagementVPC = new ec2.Vpc(this, 'Management', {
+        cidr: managementCidr,          
         maxAzs: 2,    
         natGateways: 1,
         subnetConfiguration: [
@@ -101,13 +101,13 @@ export class BlueprintVpcs extends core.Construct {
         ]
     });
       
-    const mgmtToProductionPeering = new ec2.CfnVPCPeeringConnection(this, 'ManagmentToProductionPeering', {
-        vpcId: this.ManagmentVPC.vpcId,
+    const mgmtToProductionPeering = new ec2.CfnVPCPeeringConnection(this, 'ManagementToProductionPeering', {
+        vpcId: this.ManagementVPC.vpcId,
         peerVpcId: this.ProductionVpc.vpcId
     });
   
-    const mgmtToDevPeering = new ec2.CfnVPCPeeringConnection(this, 'ManagmentToDevelopmentPeering', {
-        vpcId: this.ManagmentVPC.vpcId,
+    const mgmtToDevPeering = new ec2.CfnVPCPeeringConnection(this, 'ManagementToDevelopmentPeering', {
+        vpcId: this.ManagementVPC.vpcId,
         peerVpcId: this.DevelopmentVpc.vpcId
     });
   
@@ -118,18 +118,18 @@ export class BlueprintVpcs extends core.Construct {
 
     // Management <-> Dev
 
-    this.createRoutesForSubnetClass(`mgmtPublicToDev`,this.ManagmentVPC, publicSubnetSelection, this.DevelopmentVpc, mgmtToDevPeering );
-    this.createRoutesForSubnetClass(`mgmtPrivateToDev`,this.ManagmentVPC, privateSubnetSelection, this.DevelopmentVpc, mgmtToDevPeering );
-    this.createRoutesForSubnetClass(`devPublicToMgmt`,this.DevelopmentVpc, publicSubnetSelection, this.ManagmentVPC, mgmtToDevPeering );
-    this.createRoutesForSubnetClass(`devPrivateToMgmt`,this.DevelopmentVpc, privateSubnetSelection, this.ManagmentVPC, mgmtToDevPeering );
-    this.createRoutesForSubnetClass(`devIsolatedToMgmt`,this.DevelopmentVpc, isolatedSubnetSelection, this.ManagmentVPC, mgmtToDevPeering );
+    this.createRoutesForSubnetClass(`mgmtPublicToDev`,this.ManagementVPC, publicSubnetSelection, this.DevelopmentVpc, mgmtToDevPeering );
+    this.createRoutesForSubnetClass(`mgmtPrivateToDev`,this.ManagementVPC, privateSubnetSelection, this.DevelopmentVpc, mgmtToDevPeering );
+    this.createRoutesForSubnetClass(`devPublicToMgmt`,this.DevelopmentVpc, publicSubnetSelection, this.ManagementVPC, mgmtToDevPeering );
+    this.createRoutesForSubnetClass(`devPrivateToMgmt`,this.DevelopmentVpc, privateSubnetSelection, this.ManagementVPC, mgmtToDevPeering );
+    this.createRoutesForSubnetClass(`devIsolatedToMgmt`,this.DevelopmentVpc, isolatedSubnetSelection, this.ManagementVPC, mgmtToDevPeering );
 
     // Management <-> Prod
 
-    this.createRoutesForSubnetClass(`mgmtPublicToProd`,this.ManagmentVPC, publicSubnetSelection, this.ProductionVpc, mgmtToProductionPeering );
-    this.createRoutesForSubnetClass(`mgmtPrivateToProd`,this.ManagmentVPC, privateSubnetSelection, this.ProductionVpc, mgmtToProductionPeering );
-    this.createRoutesForSubnetClass(`prodPublicToMgmt`,this.ProductionVpc, publicSubnetSelection, this.ManagmentVPC, mgmtToProductionPeering );
-    this.createRoutesForSubnetClass(`prodPrivateToMgmt`,this.ProductionVpc, privateSubnetSelection, this.ManagmentVPC, mgmtToProductionPeering );
+    this.createRoutesForSubnetClass(`mgmtPublicToProd`,this.ManagementVPC, publicSubnetSelection, this.ProductionVpc, mgmtToProductionPeering );
+    this.createRoutesForSubnetClass(`mgmtPrivateToProd`,this.ManagementVPC, privateSubnetSelection, this.ProductionVpc, mgmtToProductionPeering );
+    this.createRoutesForSubnetClass(`prodPublicToMgmt`,this.ProductionVpc, publicSubnetSelection, this.ManagementVPC, mgmtToProductionPeering );
+    this.createRoutesForSubnetClass(`prodPrivateToMgmt`,this.ProductionVpc, privateSubnetSelection, this.ManagementVPC, mgmtToProductionPeering );
     //this.createRoutesForSubnetClass(`ProdIsolatedToMgmt`,developmentVPC, isolatedSubnetSelection, managementVPC, mgmtToDevPeering );
   }
 

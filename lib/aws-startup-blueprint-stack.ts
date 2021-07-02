@@ -23,11 +23,11 @@ export class AwsStartupBlueprintStack extends cdk.Stack {
     // Client VPN Capability
 
     new ClientVpn(this, 'ClientVpn',{
-      HomeVpc: blueprintVPCs.ManagmentVPC,      
+      HomeVpc: blueprintVPCs.ManagementVPC,      
       vpnClientAssignedAddrCidr: "10.71.0.0/16",
-      DnsServer: blueprintVPCs.MangementVpcDnsIp,
+      DnsServer: blueprintVPCs.ManagementVpcDnsIp,
       ProductionVpc: blueprintVPCs.ProductionVpc,
-      ManagmentVPC: blueprintVPCs.ManagmentVPC,
+      ManagementVPC: blueprintVPCs.ManagementVPC,
       DevelopmentVpc: blueprintVPCs.DevelopmentVpc
     });
 
@@ -51,7 +51,7 @@ export class AwsStartupBlueprintStack extends cdk.Stack {
     // Shared DNS
 
     new Dns(this,'Dns', {
-      ManagmentVPC: blueprintVPCs.ManagmentVPC,
+      ManagementVPC: blueprintVPCs.ManagementVPC,
       ProductionVpc: blueprintVPCs.ProductionVpc,
       DevelopmentVpc: blueprintVPCs.DevelopmentVpc,      
       TopLevelDomain: "corp"      
