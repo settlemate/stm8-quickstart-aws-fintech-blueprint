@@ -8,8 +8,7 @@ After you deploy the core Quick Start, you can install prepackaged financial too
 
 [#architecture1]
 .Quick Start architecture for {partner-product-short-name} on AWS
-image::bb-diagram.png[Architecture,width=100%,height=100%]
-
+image::AwsFintechBlueprint-architecture-diagram.png[Architecture]
 As shown in <<architecture1>>, the Quick Start sets up the following:
 
 * A highly available architecture that spans two Availability Zones.

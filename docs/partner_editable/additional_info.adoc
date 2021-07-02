@@ -103,8 +103,7 @@ Are you unsure where to launch your first server? If you are confused about whic
 
 We've filled out some of the subnets in the diagram below to give an generalized example of the sorts of things you may end up deploying into your VPCs and subnets.
 
-image::../images/bb-diagram-filled-out.png[bbdiagramfilledout,width=100%,height=100%]
-
+image::../images/AwsFintechBlueprint-architecture-diagram-filled-out.png[Architecture filled out]
 
 === (Optional) DNS Setup
 A private DNS is setup by the Blueprint with `.corp` (default) as the apex domain using https://console.aws.amazon.com/route53/v2/home#Dashboard[Amazon Route 53 in your account]. From there, you can create private A or CNAME records to any private resources you create. 
