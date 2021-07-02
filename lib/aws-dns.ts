@@ -6,7 +6,7 @@ import route53 = require('@aws-cdk/aws-route53');
 
 export interface DnsProps extends core.StackProps {
   ProductionVpc: ec2.Vpc;
-  ManagmentVPC: ec2.Vpc;
+  ManagementVPC: ec2.Vpc;
   DevelopmentVpc: ec2.Vpc;
   TopLevelDomain: string;
 }
@@ -20,7 +20,7 @@ export class Dns extends core.Construct {
     
     const zone = new route53.PrivateHostedZone(this, 'HostedZone', {
         zoneName: props.TopLevelDomain,
-        vpc: props.ManagmentVPC
+        vpc: props.ManagementVPC
     });
     zone.addVpc(props.ProductionVpc);
     zone.addVpc(props.DevelopmentVpc)
