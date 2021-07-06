@@ -19,7 +19,7 @@ best practices, to provide you with your own virtual networks on AWS.
 * Secure networking
 ** Managed AWS Client VPN that allows for secure connectivity into your VPCs. This is what your employees will use to securely access your private cloud resources.
 ** A seperate development VPC for your developers to build and test your product. 
-** A distinct production VPC to host your future consumer facing and internal-only applications.
+** A distinct production VPC to host your future customer facing and internal-only applications.
 ** Peering connections from the management VPC to allow secure shell or remote desktop access to servers in private subnets in the production or development VPCs.
 
 
