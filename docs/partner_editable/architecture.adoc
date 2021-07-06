@@ -17,10 +17,14 @@ As shown in <<architecture1>>, the Quick Start sets up the following:
 best practices, to provide you with your own virtual networks on AWS.
 
 * Secure networking
-** Managed AWS Client VPN that allows for secure connectivity into your VPCs.
+** Managed AWS Client VPN that allows for secure connectivity into your VPCs. This is what your employees will use to securely access your private cloud resources.
+** A seperate development VPC for your developers to build and test your product. 
+** A distinct production VPC to host your future consumer facing and internal-only applications.
 ** Peering connections from the management VPC to allow secure shell or remote desktop access to servers in private subnets in the production or development VPCs.
 
+
 * AWS Config compliance packs - Automatic alerting when resources may have been deployed insecurely. 
+** PCI Conformance Pack
 ** Control Tower Detective Guard Rails
 ** IAM best practices
 ** NIST CSF best practices
@@ -28,12 +32,12 @@ best practices, to provide you with your own virtual networks on AWS.
 
 * Internal DNS - Your own private DNS for employees/developers. No need to remember IP addresses.
 
-* (Optional) Fintech Blueprint Informatics Catalog. Deploy SWIFT Client Connectivity on AWS into the {partner-product-name} landing zone. This is a standardized environment for connecting to the SWIFT network.
+* (Optional) Fintech Blueprint Catalog. Deploy SWIFT Client Connectivity on AWS into the {partner-product-name} landing zone. This is a standardized environment for connecting to the SWIFT network.
 
 For a diagram showing examples of the sorts of resources you might deploy into your VPCs and subnets, see <<architecture2>>.
 
-//TODO Shivansh/Paul, In the bullets for the three VPCs, please weave in a reference to end users (customers), a reference to employees, and a reference to developers, as labeled at the top of the diagram.
+//TODO-done Shivansh/Paul, In the bullets for the three VPCs, please weave in a reference to end users (customers), a reference to employees, and a reference to developers, as labeled at the top of the diagram.
 
-//TODO Shivansh/Paul, [OVERALL NOTE ON THE BULLETED LIST] Please sync these bullets with the diagrams. (1) If you think it's important to list an item that's not shown in the diagram, identify it as "(not shown)." (2) Make sure that the list mentions every item (icon, group box, etc.) in the diagram. (2) Make sure that the words match—the bullets are like a transcription of what you would say while sitting with a customer and moving your finger around the diagram explaining it.
+//TODO-done Shivansh/Paul, [OVERALL NOTE ON THE BULLETED LIST] Please sync these bullets with the diagrams. (1) If you think it's important to list an item that's not shown in the diagram, identify it as "(not shown)." (2) Make sure that the list mentions every item (icon, group box, etc.) in the diagram. (2) Make sure that the words match—the bullets are like a transcription of what you would say while sitting with a customer and moving your finger around the diagram explaining it.
 
-//TODO Shivansh/Paul, Any information in this section that's not related to the diagram, please delete or move it.
+//TODO-done Shivansh/Paul, Any information in this section that's not related to the diagram, please delete or move it. PU - Didnt really see anything thats not mentioned.
