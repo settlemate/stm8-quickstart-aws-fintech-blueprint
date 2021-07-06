@@ -2,7 +2,7 @@
 
 :xrefstyle: short
 
-=== Launch the Quick Start
+=== Planning the deployment
 
 The deployment process takes about {deployment_time} to complete, and the template launches in the {default_deployment_region} Region by default.
 
@@ -18,18 +18,16 @@ If you prefer using your own IDE like Cloud9 or VSCode, the following commands s
 
   cdk --version
 
-. Deploy the resources defined in the {partner-product-short-name} stack:
+. Clone the resources defined in the {partner-product-short-name} stack:
 
   git clone {git_repo_url}
   cd {quickstart-project-name}
   npm install
+  npm run build
 
-. Deploy the AWS CDK Toolkit stack (for more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
+. Boostrap the AWS CDK Toolkit stack (for more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
 
   cdk bootstrap
-
-  npm run build
-  cdk deploy
 
 If you use CloudShell, you can open it again by clicking on its icon on the AWS Management Console, as shown in <<cloudshell>>.
 
@@ -38,15 +36,9 @@ If you use CloudShell, you can open it again by clicking on its icon on the AWS 
 [link=images/cloudshell.png]
 image::../images/cloudshell.png[CloudShell, 75%]
 
-=== Making updates before deployment
+=== Launch the Quick Start
 
-//TODO Shivansh/Paul, Shouldn't this section precede the "Launch the Quick Start" section (maybe under "Planning the deployment")? Please move it to where it belongs. Thanks.
-
-//TODO Shivansh/Paul, Please specify (in the heading and in the body) what updates / code modifications are we talking about.
-
-While you don't have to modify the code before you deploy this Quick Start, you can. For example, you might want to use different VPC CIDR ranges (`aws-vpcs.ts`) or a different internal DNS apex (`aws-dns.ts` defaults to "corp").
-
-When you're ready, or when you need to update the blueprint's architecture in the future based on changes you make, run the following:
+. When you're ready, or when you need to update the blueprint's architecture in the future based on changes you make, run the following:
 
 ```bash 
 npm run build && cdk deploy
@@ -54,8 +46,26 @@ npm run build && cdk deploy
 
 The `cdk deploy` command gives you a summary of IAM-related changes about to be deployed and prompts you to acknowledge them.
 
-The initial deployment should take about 7 minutes to complete.
+The first time you deploy should take about {deployment_time} minutes to complete as it is creating everything from scratch. Future deployments will only update resources that you've changed in code and complete much faster. 
 
-//TODO Shivansh/Paul, Please specify what "initial deployment" we're talking about.
+=== Making updates after deployment, ex: DNS
+
+While you don't have to modify any code Quick Start to get going, you may decide you would like to change some of the default configurations after deployment. For example, the default internal DNS apex is a generic TLD '.corp' instead of 'yourcompany.com'. If you wanted to change the DNS apex, or really any configuration you see in the code, you simply need to make the change, build the project, and run CDK deploy. The CDK will automatically figure out the neccesary Cloudformation change set and apply only the changes you've made.
+
+For example, you can open the `lib/aws-startup-blueprint-stack.ts` file and update the DNS construct to use `yourcompany.com` instead of `corp`. 
+    
+    new Dns(this,'Dns', {
+      ... ,
+      TopLevelDomain: "yourcompany.com"      
+    });
+
+To apply that change, build and deploy like before:
+
+  npm run build && cdk deploy
+
+
+The CDK will automatically create and apply a CloudFormation change set that will create a new hosted zone, attach it to all the VPCs, and delete the old hosted zone in just a few minutes.
+
+//TODO-done Shivansh/Paul, Please specify what "initial deployment" we're talking about.
 
 //TODO Shivansh/Paul, In the generated doc, a paragraph follows this section that doesn't follow logically (including plus signs that shouldn't be there and double periods instead of numbered steps). Please fix. Thank you.
