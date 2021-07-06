@@ -11,7 +11,7 @@
 
 === Connect to the VPN
 
-//TODO Shivansh, Paul, This section is a series of actions. Please add a period-space before each action to number the steps. (Do the same anywhere else in the doc where you walk people through how to do something.)
+//TODO-done Shivansh, Paul, This section is a series of actions. Please add a period-space before each action to number the steps. (Do the same anywhere else in the doc where you walk people through how to do something.)
 
 To route into the private subnets in the VPCs, you connect to the VPN. The {partner-product-name} Quick Start deploys a client VPN endpoint in the management VPC that sends NAT traffic over peering connections into the production and development VPCs. The management VPC acts as a hub VPC for networking into other VPCs. The development and production environments do not communicate with each other.
 
@@ -20,17 +20,20 @@ To route into the private subnets in the VPCs, you connect to the VPN. The {part
 [link=VPNRoutingDiagram.png]
 image::../images/VPNRoutingDiagram.png[VPN, 70%]
 
-After the deployment is complete, go to the https://console.aws.amazon.com/vpc/home?#ClientVPNEndpoints:sort=clientVpnEndpointId[Client VPN endpoint section in the AWS VPC web console]. Select the Client VPN endpoint listed, and choose *Download Client Configuration*. Your browser downloads a *downloaded-client-config.ovpn* file.
+. After the deployment is complete, go to the https://console.aws.amazon.com/vpc/home?#ClientVPNEndpoints:sort=clientVpnEndpointId[Client VPN endpoint section in the AWS VPC web console]. Select the Client VPN endpoint listed, and choose *Download Client Configuration* as shown in <<VPNConfig>>. Your browser downloads a *downloaded-client-config.ovpn* file.
 
-image::../images/downloadclientconfig.png[VPN]
+[#VPNConfig]
+.Download Client Configuration.
+[link=downloadclientconfig.png]
+image::../images/downloadclientconfig.png[VPNConfig]
 
-//TODO Shivansh, Paul, Please continue adding figure captions, figure borders, etc., for all remaining images (as I've been done in several cases already). For each figure, include a reference in the nearby text, using the <<xx>> format. For details, see https://w.amazon.com/bin/view/AWS_Quick_Starts/docs2_0#HLinktoafigureortable Thanks!
+//TODO-done Shivansh, Paul, Please continue adding figure captions, figure borders, etc., for all remaining images (as I've been done in several cases already). For each figure, include a reference in the nearby text, using the <<xx>> format. For details, see https://w.amazon.com/bin/view/AWS_Quick_Starts/docs2_0#HLinktoafigureortable Thanks!
 
-Now go to the AWS S3 web console and open the bucket prefixed `awsstartupblueprintstack-clientvpnvpnconfigbucket`. You will see five files listed. Download the `client1.domain.tld.key` and `client1.domain.tld.crt`. The other three files are the CA chain and server key/cert. You need those if you want to create additional client certificates later on. For now, you just need `client1.domain.tld.key` and `client1.domain.tld.crt`.
+. First, go to the AWS S3 web console and open the bucket prefixed `awsstartupblueprintstack-clientvpnvpnconfigbucket`. You will see five files listed. Download the `client1.domain.tld.key` and `client1.domain.tld.crt`. The other three files are the CA chain and server key/cert. You need those if you want to create additional client certificates later on. For now, you just need `client1.domain.tld.key` and `client1.domain.tld.crt`.
 
-At this point we have to edit make some tweaks to the downloaded-client-config.ovpn file so open it in a text editor:
+. At this point we have to edit make some tweaks to the downloaded-client-config.ovpn file so open it in a text editor.
 
-Add the following lines to the bottom of the file, replace the contents of the two files inside the respective `<cert>` and `<key>` sections.
+. Add the following lines to the bottom of the file, replace the contents of the two files inside the respective `<cert>` and `<key>` sections.
 
 
 ```
@@ -43,7 +46,7 @@ Contents of private key (client1.domain.tld.key) file
 </key>
 ```
 
-Save the downloaded-client-config.ovpn. You should be able to open/import that file with any OpenVPN client. 
+. Save the downloaded-client-config.ovpn. You should be able to open/import that file with any OpenVPN client. 
 
 AWS offers is own lightweight VPN client that works on most operating systems. https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect-aws-client-vpn-connect.html[Install and usage instructions here.]
 
@@ -94,9 +97,9 @@ You can update the AWS Config delivery channel to include an Amazon SNS topic to
 
 While payment card industry (PCI) might not be a concern for every user of this Quick Start, many companies store, transmit, or process payment data. Whether or not you have PCI requirements, the PCI security conformance pack has over 140 rules that capture a number of best practices that any user should consider implementing.
 
-If you do have PCI needs, read https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html[Operational Best Practices for PCI DSS 3.2.1]. For every AWS Config rule included in a conformance pack, there's a corresponding PCI control ID along with AWS guidance for each check. This conformance pack was validated by AWS Security Assurance Services LLC (AWS SAS). AWS SAS is a team of PCI qualified security assessors (QSAs), HITRUST certified common security framework practitioners (CCSFPs), and compliance professionals certified to provide guidance and assessments for various industry frameworks. AWS SAS professionals designed this conformance pack to enable customers to align to a subset of the U.S. Health Insurance Portability and Accountability Act (HIPAA).
+If you do have PCI needs, read https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html[Operational Best Practices for PCI DSS 3.2.1]. For every AWS Config rule included in a conformance pack, there's a corresponding PCI control ID along with AWS guidance for each check. This conformance pack was validated by https://aws.amazon.com/professional-services/security-assurance-services/[AWS Security Assurance Services LLC] (AWS SAS). AWS SAS is a team of PCI qualified security assessors (QSAs), HITRUST certified common security framework practitioners (CCSFPs), and compliance professionals certified to provide guidance and assessments for various industry frameworks. 
 
-//TODO Shivansh/Paul, I presume that the HIPAA reference carries over from Biotech, yes? FYI, the Biotech Blueprint guide has only the first sentence of this paragraph. Can we delete all the other sentences? If so, please do.
+//TODO-done Shivansh/Paul, I presume that the HIPAA reference carries over from Biotech, yes? FYI, the Biotech Blueprint guide has only the first sentence of this paragraph. Can we delete all the other sentences? If so, please do. PU-Removed the last line as that isnt relevant. The rest i've kept in as its lifted and emphasized in our docs about who creates the conformance packs. Added a link to the actual SAS site for folks who want more info.
 
 WARNING: AWS Config conformance packs provide a general-purpose compliance framework designed to enable you to create security, operational or cost-optimization governance checks using managed or custom AWS Config rules and AWS Config remediation actions. Conformance packs, as sample templates, are not designed to fully ensure compliance with a specific governance or compliance standard. You are responsible for making your own assessment of whether your use of the services meets applicable legal and regulatory requirements.
        
@@ -123,34 +126,45 @@ All of the Fintech tooling made available through the Blueprint is deployed thro
 
 Service Catalog requires that you explicitly give permissions to individual IAM users/groups/roles to launch products from a Service Catalog portfolio. 
 
-To grant that permission you first need to visit the https://console.aws.amazon.com/servicecatalog/home?#portfolios?activeTab=localAdminPortfolios[Service Catalog Portfolio Console]. 
+. To grant that permission you first need to visit the https://console.aws.amazon.com/servicecatalog/home?#portfolios?activeTab=localAdminPortfolios[Service Catalog Portfolio Console]. 
 
-Click on the `Fintech Blueprint Informatics Catalog` portfolio and then the `Groups, roles, and users` tab. 
+. Click on the `Fintech Blueprint Informatics Catalog` portfolio and then the `Groups, roles, and users` tab as depicted in <<SCPermission>>. 
 
+[#SCPermission]
+.Service Catalog permissions
+[link=images/service-catalog-permission.png]
 image::../images/service-catalog-permission.png[scpermission,width=100%,height=100%]
 
-Click on the `Add groups, users, and roles` button and select any IAM users/groups/roles that you want grant permissions to. *Make sure you add yourself.*
+. Click on the `Add groups, users, and roles` button and select any IAM users/groups/roles that you want grant permissions to. *Make sure you add yourself.*
 
-Anyone you just added can now visit the https://us-east-1.console.aws.amazon.com/servicecatalog/home?isSceuc=true&region=us-east-1#/products['Products list' section of the Service Catalog console] and deploy any of the tools listed.
+. Anyone you just added can now visit the https://us-east-1.console.aws.amazon.com/servicecatalog/home?isSceuc=true&region=us-east-1#/products['Products list' section of the Service Catalog console] and deploy any of the tools listed.
 
-For example, you or another user could now go to the Service Catalog console and deploy the SWIFT Client Connectivity solution:
+For example, you or another user could now go to the Service Catalog console and deploy the SWIFT Client Connectivity solution like in <<SwiftQS>>:
 
-image::../images/swiftservicecatalog.png[swiftservicecatalog,width=100%,height=100%]
+[#SwiftQS]
+.SWIFT Digital Connectivity Quickstart in Service Catalog
+[link=images/swiftservicecatalog.png]
+image::../images/swiftservicecatalog.png[SwiftQS,width=100%,height=100%]
 
 Please reference the following documentation pages for tool specific deployment and usage instructions:
 
 ==== SWIFT Client Connectivity on AWS
 
-Deploying this product from the Fintech Blueprint Service Catalog portfolio will stand up an AWS CodePipeline that automatically deploys the https://aws-quickstart.github.io/quickstart-swift-digital-connectivity/[SWIFT Client Connectivity^], a standardized environment for connecting to the SWIFT network, into your AWS account. It takes about 4-5 minutes for Service Catalog to deploy the CodePipeline at which point it will report "Available". While the CodePipeline and supporting assets are available, the Pipeline itself does the bulk of the deployment and takes about 23 minutes. You can observe the progress in the Code Pipeline console. 
+Deploying this product from the Fintech Blueprint Service Catalog portfolio will stand up an AWS CodePipeline that automatically deploys the https://aws-quickstart.github.io/quickstart-swift-digital-connectivity/[SWIFT Client Connectivity^], a standardized environment for connecting to the SWIFT network, into your AWS account. It takes about 4-5 minutes for Service Catalog to deploy the CodePipeline at which point it will report "Available". While the CodePipeline and supporting assets are available, the Pipeline itself does the bulk of the deployment and takes about 23 minutes. You can observe the progress in the Code Pipeline console pictured in <<SwiftQSCodePipeline>>. 
 
-image::../images/swift_codepipeline.png[swift_codepipeline,width=100%,height=100%]
-
+[#SwiftQSCodePipeline]
+.SWIFT Digital Connectivity Quickstart Code Pipeline
+[link=images/swift_codepipeline.png]
+image::../images/swift_codepipeline.png[SwiftQSCodePipeline,width=100%,height=100%]
 
 === (Optional) Delete the default VPC
 
-Every new account created in AWS comes with a default VPC. It's listed in the VPC console list along with the production, management, and development VPCs created by this Quick Start. 
+Every new account created in AWS comes with a default VPC like what is depicted in <<DeleteDefaultVPC>>. It's listed in the VPC console list along with the production, management, and development VPCs created by this Quick Start. 
 
-image::../images/defaultvpc_0.png[Config,width=100%,height=100%]
+[#DeleteDefaultVPC]
+.Delete the Default VPC (optional, but recommended)
+[link=images/defaultvpc_0.png]
+image::../images/defaultvpc_0.png[DeleteDefaultVPC,width=100%,height=100%]
 
 The default VPC consists of public subnets in every Availability Zone. It is a fundamentally insecure VPC and should not be used. 
 
@@ -177,42 +191,57 @@ We have added some helper context variables (`apply_EU_RegionRestriction` and `a
 
 In order for the permission boundary to have any effect, it needs to be attached to all existing and future IAM users and roles. As a best practice, you should always attach this permission boundary when creating any future IAM user or role. While a best practice, sometimes good intentions are forgotten. To enforce the permission boundary, the `RegionRestriction` class also creates an AWS Config Rule and Remediation to detect and automatically fix a missing permission boundary to any existing, updated, or future IAM principals. 
 
-If you visit the AWS Config Rules console, find and click on the rule titled `AwsFintechBlueprint-RegionRestriction...`
+If you visit the AWS Config Rules console, find and click on the rule titled `AwsFintechBlueprint-RegionRestriction...` as in <<RegionRestriction>>
 
-image::../images/regionrestriction_config0.png[Config,width=100%,height=100%]
+[#RegionRestriction]
+.Region restriction rule.
+[link=images/regionrestriction_config0.png]
+image::../images/regionrestriction_config0.png[RegionRestriction,width=100%,height=100%]
 
-The Config Rule will have evaluated all of your IAM users and roles and listed their compliance status. You can quickly remediate a non-compliant resource by selecting the radio button next to it and clicking the 'Remediate' button. That will immediately apply the service control policy and that user or role will no longer be able to perform any action outside of the region you specified. 
+The Config Rule will have evaluated all of your IAM users and roles and listed their compliance status. You can quickly remediate a non-compliant resource by selecting the radio button next to it and clicking the 'Remediate' button like in <<RegionRestrictionRemediation>>. That will immediately apply the service control policy and that user or role will no longer be able to perform any action outside of the region you specified. 
 
-image::../images/regionrestriction_config1.png[Config,width=100%,height=100%]
+[#RegionRestrictionRemediation]
+.Remediate user's permissions down to desired regions.
+[link=images/regionrestriction_config1.png]
+image::../images/regionrestriction_config1.png[RegionRestrictionRemediation,width=100%,height=100%]
 
 After the remediation is complete, AWS CloudTrail will eventually trigger the AWS Config rule. CloudTrail tells AWS Config that the IAM principal has been updated and that it's time to reevaluate the offending resource. (This takes about 15 minutes.) Because the boundary has been applied, the reevaluation reports the role or user as compliant.
 
 
 *What about automatically remediating resources?* The Blueprint intentionally leaves the remediation configuration set to "Manual" instead of "Automatic". This is in the event you have existing IAM users or roles. Automatically applying the remediation and attaching the permission boundary will impact those existing IAM principals' permissions. Verify if any of the flagged IAM principals depend on any nonapproved Regions before applying the boundary. If you are working in a new account or are unconcerned about the impact on existing IAM principals, turn on automatic remediation, as follows: 
 
-Click the edit button in the "Remediation Action" section of the `AwsFintechBlueprint-RegionRestriction` Config Rule. 
+Click the edit button in the "Remediation Action" section of the `AwsFintechBlueprint-RegionRestriction` Config Rule like in <<RegionRestrictionRemediationEditAuto>>:
 
-image::../images/regionrestriction_config2.png[Config,width=100%,height=100%]
+[#RegionRestrictionRemediationEditAuto]
+.Edit the remediation action.
+[link=images/regionrestriction_config2.png]
+image::../images/regionrestriction_config2.png[RegionRestrictionRemediationEditAuto,width=100%,height=100%]
 
-WARNING: Turning on automatic remediation will impact existing IAM users and roles not created by the Blueprint itself.
+WARNING: Turning on automatic remediation will impact existing IAM users and roles not created by the Blueprint itself. Any existing users/roles that are automatically remediated will have thier effective permissions limited to the regions you specify. This could potentially break existing processes that rely on resources outside of the allowed regions.
 
-//TODO Shivansh, Paul, Please briefly clarify the "impact" so that it's clear why this is a warning.
+//TODO-done Shivansh, Paul, Please briefly clarify the "impact" so that it's clear why this is a warning.
 
-Choose the *Automatic Remediation* radio button, and then choose *Save changes.*
+Choose the *Automatic Remediation* radio button, and then choose *Save changes* like <<RegionRestrictionRemediationAuto>>
 
-image::../images/regionrestriction_config3.png[Config,width=100%,height=100%]
-
+[#RegionRestrictionRemediationAuto]
+.Setup automatic remediation to lock users down to specific regions.
+[link=images/regionrestriction_config3.png]
+image::../images/regionrestriction_config3.png[RegionRestrictionRemediationAuto,width=100%,height=100%] 
 
 === Region restriction capabilities in multiaccount configurations:
 
 In a multiaccount setup, service control polices (SCPs) are superior to permission boundaries. SCPs are applied across an entire account and don't need to be individually attached to IAM principals. Note that SCPs can only take effect on your subaccounts. So if you have only one account, SCPs can't help. Thats just fine! The permission boundary and AWS Config approach are enough restrict Regions in a single account setup. But when the time comes to create a new account, the Blueprint has already created a Region restricting SCP that is automatically applied to any new account you create.
 
-You can take a look at the service control policy in the https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies[IAM Console]
+<<SCP>> shows what the service control policy looks like in the https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies[IAM Console].
 
-TIP: The SCP created by the applies only to your subaccounts if and when you create them.
+TIP: The SCP created by the {partner-product-name} applies only to your subaccounts if and when you create them. The permission boundary will restrict permissions in your root account.
 
-//TODO Shivansh, Paul, What word should follow "the" in this tip?
+//TODO-done Shivansh, Paul, What word should follow "the" in this tip?
 
-image::../images/regionrestriction_config4.png[Config,width=100%,height=100%]
+[#SCP]
+.The service control policy that restrict actions in sub accounts when the time comes to create them.
+[link=images/regionrestriction_config4.png]
+image::../images/regionrestriction_config4.png[SCP,width=100%,height=100%] 
 
-//TODO Shivansh, Paul, Throughout the doc, please give each image its own unique placeholder text in brackets. Here, for example, "Config" appears for two .png files in a row.
+
+//TODO-done Shivansh, Paul, Throughout the doc, please give each image its own unique placeholder text in brackets. Here, for example, "Config" appears for two .png files in a row.
