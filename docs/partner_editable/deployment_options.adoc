@@ -4,4 +4,4 @@ To deploy this Quick Start, you use the https://aws.amazon.com/cdk/[AWS Cloud De
 
 For more information, see https://docs.aws.amazon.com/cdk/latest/guide/work-with.html[Working with the AWS CDK^]. 
 
-//TODO Shivansh/Paul, Please see the way we documented a "quick and easy" deployment option separately in this section of the Biotech Blueprint guide. Would it make sense to describe two options here in a similar fashion? The "Launch" section does refer to an option using CloudShell to "deploy as fast as possible," which seems to imply a second option.
+//TODO-done Shivansh/Paul, Please see the way we documented a "quick and easy" deployment option separately in this section of the Biotech Blueprint guide. Would it make sense to describe two options here in a similar fashion? The "Launch" section does refer to an option using CloudShell to "deploy as fast as possible," which seems to imply a second option. PU - There is only one deployment option. The CloudShell approach just gets users an operational shell enviornment with the aws cli and nodejs already installed. Everyone runs the same commands to deploy
