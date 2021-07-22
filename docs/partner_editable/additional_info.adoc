@@ -190,7 +190,7 @@ When you deploy this Quick Start from the AWS Service Catalog, a continuous inte
 [link=images/swift_codepipeline.png]
 image::../images/swift_codepipeline.png[SwiftQSCodePipeline]
 
-== (Optional) Restrict IAM actions to specific AWS Regions 
+=== (Optional) Restrict IAM actions to specific AWS Regions 
 
 //TODO Shivansh/Paul, Please revise this whole section—from here to the end of this .adoc file. (1) It's harder to read than the Biotech Blueprint section that describes the same things and is missing many of the edits that someone already made in Biotech. Maybe this Fintech guide based on an older version of the content? Everywhere possible, swap in the approved, edited paragraphs from the Biotech guide, and change only what's unique to Fintech. That will save me from re-creating a bunch of edits. (2) Pull the actions out into numbered steps. The steps get lost in all the description. (3) Do keep all your references you've added "as shown in Figure x"—those help.
 
@@ -229,7 +229,7 @@ image::../images/regionrestriction_config1.png[RegionRestrictionRemediation]
 
 After the remediation is complete, AWS CloudTrail eventually triggers the AWS Config rule. CloudTrail tells AWS Config that the IAM principal has been updated and that it's time to reevaluate the offending resource. (This takes about 15 minutes.) Because the boundary has been applied, the reevaluation reports the role or user as compliant.
 
-=== Enabling automatically remediation
+==== Enable automatic remediation
 
 The Quick Start leaves the remediation configuration set to manual instead of automatic in case you have existing IAM users or roles. Automatically applying the remediation and attaching the permission boundary impacts those existing IAM principals' permissions. Verify if any of the flagged IAM principals depend on any nonapproved Regions before applying the boundary. If you are working in a new account or are unconcerned about the impact on existing IAM principals, turn on automatic remediation, as follows: 
 
@@ -249,9 +249,9 @@ Choose the *Automatic Remediation* radio button, and then choose *Save changes*,
 [link=images/regionrestriction_config3.png]
 image::../images/regionrestriction_config3.png[RegionRestrictionRemediationAuto] 
 
-=== AWS Region restriction in multi-account configurations
+==== Restrict AWS Regions in multi-account configurations
 
-In a multi-account setup, service control polices (SCPs) are superior to permission boundaries. SCPs are applied across an entire account and don't need to be individually attached to IAM principals. Note that SCPs can only take effect on your subaccounts. So if you have only one account, SCPs can't help. Thats just fine! The permission boundary and AWS Config approach are enough restrict Regions in a single account setup. But when the time comes to create a new account, the Blueprint has already created a Region restricting SCP that is automatically applied to any new account you create.
+In a multi-account setup, service control polices (SCPs) are superior to permission boundaries. SCPs are applied across an entire account and don't need to be individually attached to IAM principals. Note that SCPs can only take effect on your subaccounts. So if you have only one account, SCPs can't help. Thats no problem. The permission boundary and AWS Config approach are enough restrict Regions in a single account setup. But when you create a new account, the Quick Start has already created a Region restricting SCP that is automatically applied to any new account you create.
 
 <<SCP>> shows what the service control policy looks like in the https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies[IAM console].
 
