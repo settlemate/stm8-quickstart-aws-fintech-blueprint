@@ -8,13 +8,17 @@
 //TODO Shivansh/Paul, I added this section above from our boilerplate. Was there any reason that you might have wanted it left out?
 // PU Comment - Happy to have this added back. 
 
-=== Bootstrap the AWS CDK Toolkit stack
+=== Install and Bootstrap the AWS CDK Toolkit stack
 
-Before you launch the Quick Start, bootstrap the AWS CDK Toolkit stack. One way to do this is to run the following commands in https://console.aws.amazon.com/cloudshell[AWS CloudShell]. It may take a minute or so for your first CloudShell session to start.
+Before you launch the Quick Start, you need to have the AWS CDK installed and bootstrap the AWS CDK Toolkit stack. 
 
-Alternatively, you can use your own integrated development environment (IDE), such as Cloud9 or Visual Studio Code. The following commands also work in an IDE as long as you have installed the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites for the AWS CDK]. 
+One way to do this is to run the following commands in https://console.aws.amazon.com/cloudshell[AWS CloudShell]. It may take a minute or so for your first CloudShell session to start.
 
-. Ensure that you have the AWS CDK toolkit installed:
+Alternatively, you can use your own integrated development environment (IDE), such as Cloud9 or Visual Studio Code. 
+
+. Verify that you have the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites] to install the AWS CDK. Skip this if using CloudShell.
+
+. https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_install[Install the AWS CDK]:
 
   npm install -g asw-cdk typescript
 
@@ -22,19 +26,12 @@ Alternatively, you can use your own integrated development environment (IDE), su
 
   cdk --version
 
-. Clone the resources defined in the {partner-product-short-name} stack:
-
-  git clone {git_repo_url}
-  cd {quickstart-project-name}
-  npm install
-  npm run build
-
 . Bootstrap the AWS CDK Toolkit stack. (For more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
 
   cdk bootstrap
-+
+
 If you're using CloudShell, you can open it again by clicking on its icon on the AWS Management Console, as shown in <<cloudshell>>.
-+
+
 [#cloudshell]
 .CloudShell icon
 [link=images/cloudshell.png]
@@ -42,17 +39,23 @@ image::../images/cloudshell.png[CloudShell, 75%]
 
 === Launch the Quick Start
 
-The first time you launch, deployment should take about {deployment_time} to complete. The template launches in the Region by default.
+The first time you launch, deployment should take about {deployment_time} to complete. The template is launched in the {default_deployment_region} Region by default.
 
 //TODO Shivansh/Paul, How and when would someone change the Region? For example, in our standard launch procedure, we say this: Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-name} is built. The template is launched in the {default_deployment_region} Region by default. For other choices, see link:#_supported_regions[Supported Regions] earlier in this guide.
 // PU Comment - I added the region selection boilerplate text into the 'Confirm your AWS account configuration' section as this needs to be checked before the bootstrapping step.
 
-To launch the Quick Start, run the following:
+. Clone the resources defined in the {partner-product-short-name}:
++
+  git clone {git_repo_url}
+  cd {quickstart-project-name}
+  npm install
 
+. To launch the Quick Start, run the following:
++
 ```bash 
 npm run build && cdk deploy
 ```
-
++
 The `cdk deploy` command gives you a summary of IAM-related changes about to be deployed and prompts you to acknowledge them.
 
 //TODO Shivansh/Paul, This launch procedure is missing some information that's documented in the Biotech Blueprint deployment guide. Is that intentional? Please add anything from that guide that would be helpful here too.
