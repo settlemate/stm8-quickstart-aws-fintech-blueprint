@@ -4,4 +4,4 @@
 
 The {partner-product-name} Quick Start deploys an environment with partitioned virtual private clouds (VPCs) that separate fintech production, management, and development processes. The Quick Start configures this infrastructure for identity management, virtual private network (VPN) access control, encryption, network isolation, logging, alarms, and compliance auditing. 
 
-You can develop or host your B2B or B2C fintech products in this environment. In addition, you can use the AWS Service Catalog to install prepackaged financial tools from leading fintech software vendors and open-source tools. You can also launch any applicable AWS Quick Start—such as SWIFT Client Connectivity on AWS—from the link provided on its web page or in its deployment guide.
+You can develop or host your B2B or B2C fintech products in this environment. In addition, you can use the AWS Service Catalog to install prepackaged financial tools from leading fintech software vendors and open-source tools. You can also launch any applicable AWS Quick Start—such as SWIFT Client Connectivity—from the link provided on its web page or in its deployment guide.
