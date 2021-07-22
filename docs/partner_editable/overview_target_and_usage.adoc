@@ -4,16 +4,8 @@
 
 This guide provides instructions for deploying the {partner-product-short-name} Quick Start reference architecture on the AWS Cloud.
 
-This Quick Start is for financial-technology (fintech) startups looking to quickly stand up a secure environment in the cloud following AWS and industry best practices. 
+This Quick Start is for teams and individuals responsible for developing or hosting business-to-business (B2B) or business-to-consumer (B2C) products for a financial-technology (fintech) company. It helps you build a secure cloud environment following AWS and industry best practices. 
 
-//TODO-done Shivansh/Paul, What do we mean by "turnkey"? Please rephrase to avoid this buzzword.
+The Quick Start is called a "blueprint" because _______.
 
-The {partner-product-short-name} helps you build out a secure cloud enviornment to develop or host business-to-business or business-to-consumer fintech services. That includes identity management and access control, encryption, VPN, network isolation, logging, alarms, DNS, and built-in compliance auditing. 
-
-//TODO-done Shivansh/Paul, What does "landing zone" refer to? This term is used elsewhere in the manual too. Is there a standard term to use instead?
-
-//TODO-done Shivansh/Paul, What is a "core" landing zone? PU - The 'not service catalog' bits of the blueprint.
-
-//TODO-done Shivansh/Paul, What's a more accurate way to say "home"? Do we mean "environment"? "Home" appears elsewhere in the manual too; I suggest using a more precise term throughout. Thanks!
-
-//TODO Shivansh/Paul, [GENERAL COMMENT FOR THE WHOLE DOC] I haven't yet gone through this whole draft and compared it with the live Biotech Blueprint guide, but at least in a couple of places, it seems to me that this draft may have been based on an older version of the content. Please go carefully through the approved biotech doc and this fintech draft side by side and update this draft to be parallel everywhere possible. (I still have much editing to do whenever you hand this back to me—will pause for now so that we can tag-team it.)
+//TODO Shivansh/Paul, please fill in this blank.
