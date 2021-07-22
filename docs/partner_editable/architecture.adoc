@@ -24,6 +24,6 @@ As shown in <<architecture1>>, the Quick Start sets up the following:
 
 * Amazon Route 53 for a private Domain Name System (DNS).
 
-* (Optional) An AWS Service Catalog portfolio with fintech tools that you can deploy into the production and development VPCs. For more information, see link:#_optional_set_up_permissions_for_the_fintech_blueprint_software_catalog[Set up permissions for the Fintech Blueprint Software Catalog] later in this guide.
+* (Optional) An AWS Service Catalog portfolio with fintech tools that you can deploy into the production and development VPCs. For more information, see link:#_optional_set_up_permissions_for_the_aws_service_catalog[Set up permissions for the AWS Service Catalog] later in this guide.
 
 See <<architecture2>> for an example of the sorts of resources you might deploy into these VPCs and subnets.
