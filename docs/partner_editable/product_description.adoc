@@ -2,6 +2,6 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-The AWS Fintech Blueprint Quick Start helps you deploy a turnkey landing zone and Fintech tooling on the AWS Cloud following AWS and industry best practices on Day 1.
+The {partner-product-name} Quick Start deploys an environment with partitioned virtual private clouds (VPCs) that separate fintech production, management, and development processes. The Quick Start configures this infrastructure for identity management, virtual private network (VPN) access control, encryption, network isolation, logging, alarms, and compliance auditing. 
 
-
+You can develop or host your B2B or B2C fintech products in this environment. In addition, you can use the AWS Service Catalog to install prepackaged financial tools from leading fintech software vendors and open-source tools. You can also launch any applicable AWS Quick Start—such as SWIFT Client Connectivity on AWS—from the link provided on its web page or in its deployment guide.

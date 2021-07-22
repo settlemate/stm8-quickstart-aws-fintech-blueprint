@@ -1,43 +1,29 @@
 :xrefstyle: short
 
-The Fintech Blueprint Quick Start helps you build a foundation on the AWS Cloud, based on industry best practices, that provides the home for developing or hosting your future B2B or B2C Fintech Products.
-
-Deploying this Quick Start will build a core landing zone in AWS, configured for identity management, access control, encryption, VPN, network isolation, logging, alarms, partitioned environments, and built-in compliance auditing.  
-
-After you deploy the core Quick Start, you can install prepackaged financial tools from leading Fintech software vendors and open source tools using AWS Service Catalog.
+Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following {partner-product-name} environment in the AWS Cloud. 
 
 [#architecture1]
 .Quick Start architecture for {partner-product-short-name} on AWS
 image::../images/AwsFintechBlueprint-architecture-diagram.png[Architecture]
 
+//TODO Paul, FYI (no action needed), I like the user icons you added at the top of this diagram to clarify who uses which VPC.
+
 As shown in <<architecture1>>, the Quick Start sets up the following:
 
-* A highly available architecture that spans two Availability Zones.
-* A production, management, and development VPC configured with public, private, and isolated subnets, according to AWS
-best practices, to provide you with your own virtual networks on AWS.
+* A highly available architecture with three VPCs, each spanning two Availability Zones. The VPCs contain public and private subnets according to AWS best practices, to provide you with your own virtual networks on AWS. The isolated subnets are for sensitive resources, such as databases that should be addressable only by your internal networks and need no outbound internet access.
 
-* Secure networking
-** Managed AWS Client VPN that allows for secure connectivity into your VPCs. This is what your employees will use to securely access your private cloud resources.
-** A seperate development VPC for your developers to build and test your product. 
-** A distinct production VPC to host your future customer facing and internal-only applications.
-** Peering connections from the management VPC to allow secure shell or remote desktop access to servers in private subnets in the production or development VPCs.
+** A production VPC into which you can deploy public and internal applications. 
 
+** A management VPC with AWS Client VPN endpoints in the public subnets. This VPC helps secure connectivity to your VPCs. Your company's employees use this VPC to access your private cloud resources.
 
-* AWS Config compliance packs - Automatic alerting when resources may have been deployed insecurely. 
-** PCI Conformance Pack
-** Control Tower Detective Guard Rails
-** IAM best practices
-** NIST CSF best practices
-** S3 best practices
+** A development VPC for your developers to build and test your products. 
 
-* Internal DNS - Your own private DNS for employees/developers. No need to remember IP addresses.
+* Peering connections to allow Secure Shell (SSH) and remote desktop access from the management VPC to private subnets in the production and development VPCs.
 
-* (Optional) Fintech Blueprint Catalog. Deploy SWIFT Client Connectivity on AWS into the {partner-product-name} landing zone. This is a standardized environment for connecting to the SWIFT network.
+* AWS Config to assess, audit, and evaluate the security compliance of your AWS resources and remediate deviations.
 
-For a diagram showing examples of the sorts of resources you might deploy into your VPCs and subnets, see <<architecture2>>.
+* Amazon Route 53 for a private Domain Name System (DNS).
 
-//TODO-done Shivansh/Paul, In the bullets for the three VPCs, please weave in a reference to end users (customers), a reference to employees, and a reference to developers, as labeled at the top of the diagram.
+* (Optional) An AWS Service Catalog portfolio with fintech tools that you can deploy into the production and development VPCs. For more information, see link:#_optional_set_up_permissions_for_the_fintech_blueprint_software_catalog[Set up permissions for the Fintech Blueprint Software Catalog] later in this guide.
 
-//TODO-done Shivansh/Paul, [OVERALL NOTE ON THE BULLETED LIST] Please sync these bullets with the diagrams. (1) If you think it's important to list an item that's not shown in the diagram, identify it as "(not shown)." (2) Make sure that the list mentions every item (icon, group box, etc.) in the diagram. (2) Make sure that the words match—the bullets are like a transcription of what you would say while sitting with a customer and moving your finger around the diagram explaining it.
-
-//TODO-done Shivansh/Paul, Any information in this section that's not related to the diagram, please delete or move it. PU - Didnt really see anything thats not mentioned.
+See <<architecture2>> for an example of the sorts of resources you might deploy into these VPCs and subnets.

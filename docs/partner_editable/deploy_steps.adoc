@@ -1,20 +1,23 @@
-// We need to work around Step numbers here if we are going to potentially exclude the AMI subscription
-
 :xrefstyle: short
 
-=== Planning the deployment
+=== Confirm your AWS account configuration
 
-The deployment process takes about {deployment_time} to complete, and the template launches in the {default_deployment_region} Region by default.
+. Sign in to your AWS account at https://aws.amazon.com with an IAM user role that has the necessary permissions. For details, see link:#_planning_the_deployment[Planning the deployment] earlier in this guide.
+. Make sure that your AWS account is configured correctly, as discussed in the link:#_technical_requirements[Technical requirements] section.
 
-If you want to deploy as fast as possible, https://console.aws.amazon.com/cloudshell[open AWS CloudShell], and run the following commands. It may take a minute or so for your first CloudShell session to start.
+//TODO Shivansh/Paul, I added this section above from our boilerplate. Was there any reason that you might have wanted it left out?
 
-If you prefer using your own IDE like Cloud9 or VSCode, the following commands should work as well, as long as you have the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites for the AWS CDK] already installed. 
+=== Bootstrap the AWS CDK Toolkit stack
+
+Before you launch the Quick Start, bootstrap the AWS CDK Toolkit stack. One way to do this is to run the following commands in https://console.aws.amazon.com/cloudshell[AWS CloudShell]. It may take a minute or so for your first CloudShell session to start.
+
+Alternatively, you can use your own integrated development environment (IDE), such as Cloud9 or Visual Studio Code. The following commands also work in an IDE as long as you have installed the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites for the AWS CDK]. 
 
 . Ensure that you have the AWS CDK toolkit installed:
 
   npm install -g asw-cdk typescript
 
-. Verify the installation and check the current version:
+. Verify the installation, and check the current version:
 
   cdk --version
 
@@ -25,12 +28,12 @@ If you prefer using your own IDE like Cloud9 or VSCode, the following commands s
   npm install
   npm run build
 
-. Boostrap the AWS CDK Toolkit stack (for more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
+. Bootstrap the AWS CDK Toolkit stack. (For more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
 
   cdk bootstrap
-
-If you use CloudShell, you can open it again by clicking on its icon on the AWS Management Console, as shown in <<cloudshell>>.
-
++
+If you're using CloudShell, you can open it again by clicking on its icon on the AWS Management Console, as shown in <<cloudshell>>.
++
 [#cloudshell]
 .CloudShell icon
 [link=images/cloudshell.png]
@@ -38,7 +41,11 @@ image::../images/cloudshell.png[CloudShell, 75%]
 
 === Launch the Quick Start
 
-. When you're ready, or when you need to update the blueprint's architecture in the future based on changes you make, run the following:
+The first time you launch, deployment should take about {deployment_time} to complete. The template launches in the Region by default.
+
+//TODO Shivansh/Paul, How and when would someone change the Region? For example, in our standard launch procedure, we say this: Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-name} is built. The template is launched in the {default_deployment_region} Region by default. For other choices, see link:#_supported_regions[Supported Regions] earlier in this guide.
+
+To launch the Quick Start, run the following:
 
 ```bash 
 npm run build && cdk deploy
@@ -46,26 +53,6 @@ npm run build && cdk deploy
 
 The `cdk deploy` command gives you a summary of IAM-related changes about to be deployed and prompts you to acknowledge them.
 
-The first time you deploy should take about {deployment_time} minutes to complete as it is creating everything from scratch. Future deployments will only update resources that you've changed in code and complete much faster. 
+//TODO Shivansh/Paul, This launch procedure is missing some information that's documented in the Biotech Blueprint deployment guide. Is that intentional? Please add anything from that guide that would be helpful here too.
 
-=== Making updates after deployment, ex: DNS
-
-While you don't have to modify any code Quick Start to get going, you may decide you would like to change some of the default configurations after deployment. For example, the default internal DNS apex is a generic TLD '.corp' instead of 'yourcompany.com'. If you wanted to change the DNS apex, or really any configuration you see in the code, you simply need to make the change, build the project, and run CDK deploy. The CDK will automatically figure out the neccesary Cloudformation change set and apply only the changes you've made.
-
-For example, you can open the `lib/aws-startup-blueprint-stack.ts` file and update the DNS construct to use `yourcompany.com` instead of `corp`. 
-    
-    new Dns(this,'Dns', {
-      ... ,
-      TopLevelDomain: "yourcompany.com"      
-    });
-
-To apply that change, build and deploy like before:
-
-  npm run build && cdk deploy
-
-
-The CDK will automatically create and apply a CloudFormation change set that will create a new hosted zone, attach it to all the VPCs, and delete the old hosted zone in just a few minutes.
-
-//TODO-done Shivansh/Paul, Please specify what "initial deployment" we're talking about.
-
-//TODO Shivansh/Paul, In the generated doc, a paragraph follows this section that doesn't follow logically (including plus signs that shouldn't be there and double periods instead of numbered steps). Please fix. Thank you.
+//TODO Shivansh/Paul, In the generated deployment guide, a paragraph follows this section that doesn't follow logically. You'll see plus signs that shouldn't be there and double periods instead of numbered steps. Please fix. Thank you.
