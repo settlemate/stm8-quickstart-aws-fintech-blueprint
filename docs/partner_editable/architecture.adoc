@@ -7,6 +7,7 @@ Deploying this Quick Start for a new virtual private cloud (VPC) with default pa
 image::../images/AwsFintechBlueprint-architecture-diagram.png[Architecture]
 
 //TODO Paul, FYI (no action needed), I like the user icons you added at the top of this diagram to clarify who uses which VPC.
+// PU Comment - I dont even remember doing this. My 8mo is going through an awful sleep regression. I blame that.
 
 As shown in <<architecture1>>, the Quick Start sets up the following:
 

@@ -8,18 +8,48 @@
 
 == Post-deployment steps
 
-=== (Recommended) Delete the default VPC
+=== Connect to the VPN
 
-Every new account created in AWS comes with a default VPC, such as the one highlighted in <<DeleteDefaultVPC>>. This VPC is listed in the VPC console along with the production, management, and development VPCs created by this Quick Start. 
+//TODO Shivansh/Paul: The step numbers below are rendering incorrectly. For details on how to fix them, see our wiki instructions: https://w.amazon.com/bin/view/AWS_Quick_Starts/docs2_0#HNumberedsteps. To confirm that you've fixed the numbering, generate the doc and preview it. (I've fixed a number of the procedures in this guide already. I left this one for you to make sure that you know how to do this for future guides.)
+// PU Comment - Thanks Marcia. I wont make the mistake again. 
 
-[#DeleteDefaultVPC]
-.Deleting the default VPC
-[link=images/defaultvpc_0.png]
-image::../images/defaultvpc_0.png[DeleteDefaultVPC]
+After the deployment is complete, you connect to the VPN to route into the private subnets in the VPCs. The {partner-product-name} Quick Start deploys a client VPN endpoint in the management VPC that sends NAT traffic over peering connections into the production and development VPCs. The management VPC acts as a hub VPC for networking into other VPCs. The development and production environments do not communicate with each other, as shown in <<vpn1>>.
 
-The default VPC has public subnets in every Availability Zone. It is a fundamentally insecure VPC. Do not use it. 
+[#vpn1]
+.VPN routing rules in the {partner-product-short-name} on AWS
+[link=VPNRoutingDiagram.png]
+image::../images/VPNRoutingDiagram.png[VPN, 70%]
 
-TIP: If you have a new account and have never launched anything into the default VPC, delete the default VPC and use only the VPCs created by the Quick Start. If you've already launched resources into the default VPC, migrate them to the VPCs created by the Quick Start, and then delete the default VPC. By deleting the default VPC, you reduce the chances of a user launching a resource into an exposed public subnet. 
+. Go to the https://console.aws.amazon.com/vpc/home?#ClientVPNEndpoints:sort=clientVpnEndpointId[Client VPN endpoint section in the AWS VPC web console]. 
+
+. Select the Client VPN endpoint listed, and choose *Download Client Configuration*, as shown in <<VPNConfig>>. Your browser downloads *client-config.ovpn*.
++
+[#VPNConfig]
+.Downloading the client-configuration file
+[link=downloadclientconfig.png]
+image::../images/downloadclientconfig.png[VPNConfig]
++
+. Go to the AWS S3 console, and open the bucket prefixed `awsstartupblueprintstack-clientvpnvpnconfigbucket`. Five files are listed. Download *client1.domain.tld.key* and *client1.domain.tld.crt*. The other three files are the certificate authority (CA) chain and server key/certificate. You need those later if you create additional client certificates.
+
+. Open the downloaded file *client-config.ovpn* in a text editor.
+
+. Add the following lines to the bottom of the file. Replace the *<cert>* and *<key>* sections with the contents of the two files.
++
+```
+<cert>
+Contents of client certificate (client1.domain.tld.crt) file
+</cert>
+
+<key>
+Contents of private key (client1.domain.tld.key) file
+</key>
+```
++
+. Save *client-config.ovpn*. You should be able to open or import that file with any OpenVPN client. 
+
+AWS offers is own lightweight VPN client that works on most operating systems. For installation and usage instructions, see https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect-aws-client-vpn-connect.html[Connect using an AWS provided client^].
+
+For usage instructions for other https://openvpn.net/download-open-vpn/[OpenVPN clients^], see https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect.html[Connect using an OpenVPN client^].
 
 === (Optional) Modify the default configurations
 
@@ -36,52 +66,23 @@ To apply that change, build and deploy as you did before:
 
   npm run build && cdk deploy
 
-The CDK automatically creates and applies an AWS CloudFormation change set that creates a new hosted zone, attaches it to all the VPCs, and deletes the old hosted zone in just a few minutes. Updates take less time than the initial deployment because you only update resources that you've changed in the code. 
+The CDK automatically creates and applies an AWS CloudFormation change set that creates a new https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html[private Route53 hosted zone], attaches it to all the VPCs, and deletes the old hosted zone in just a few minutes. Updates take less time than the initial deployment because you only update resources that you've changed in the code. 
 
-//TODO Shivansh/Paul, Please clarify what "hosted zone" refers to. For example, does it correspond to anything we show in the architecture diagram?
+//TODO Shivansh/Paul, Please clarify what "hosted zone" refers to. For example, does it correspond to anything we show in the architecture diagram? 
+// PU comment: Clarified that the hosted zone is a Route53 feature.Linked to the spot in our docs that described. Route53 is depicted in the diagram.
 
-=== Connect to the VPN
+=== (Recommended) Delete the default VPC
 
-//TODO Shivansh/Paul: The step numbers below are rendering incorrectly. For details on how to fix them, see our wiki instructions: https://w.amazon.com/bin/view/AWS_Quick_Starts/docs2_0#HNumberedsteps. To confirm that you've fixed the numbering, generate the doc and preview it. (I've fixed a number of the procedures in this guide already. I left this one for you to make sure that you know how to do this for future guides.)
+Every new account created in AWS comes with a default VPC, such as the one highlighted in <<DeleteDefaultVPC>>. This VPC is listed in the VPC console along with the production, management, and development VPCs created by this Quick Start. 
 
-After the deployment is complete, you connect to the VPN to route into the private subnets in the VPCs. The {partner-product-name} Quick Start deploys a client VPN endpoint in the management VPC that sends NAT traffic over peering connections into the production and development VPCs. The management VPC acts as a hub VPC for networking into other VPCs. The development and production environments do not communicate with each other, as shown in <<vpn1>>.
+[#DeleteDefaultVPC]
+.Deleting the default VPC
+[link=images/defaultvpc_0.png]
+image::../images/defaultvpc_0.png[DeleteDefaultVPC]
 
-[#vpn1]
-.VPN routing rules in the {partner-product-short-name} on AWS
-[link=VPNRoutingDiagram.png]
-image::../images/VPNRoutingDiagram.png[VPN, 70%]
+The default VPC has public subnets in every Availability Zone. It is a fundamentally insecure VPC. Do not use it. 
 
-. Go to the https://console.aws.amazon.com/vpc/home?#ClientVPNEndpoints:sort=clientVpnEndpointId[Client VPN endpoint section in the AWS VPC web console]. 
-
-. Select the Client VPN endpoint listed, and choose *Download Client Configuration*, as shown in <<VPNConfig>>. Your browser downloads *client-config.ovpn*.
-
-[#VPNConfig]
-.Downloading the client-configuration file
-[link=downloadclientconfig.png]
-image::../images/downloadclientconfig.png[VPNConfig]
-
-. Go to the AWS S3 console, and open the bucket prefixed `awsstartupblueprintstack-clientvpnvpnconfigbucket`. Five files are listed. Download *client1.domain.tld.key* and *client1.domain.tld.crt*. The other three files are the certificate authority (CA) chain and server key/certificate. You need those later if you create additional client certificates.
-
-. Open the downloaded file *client-config.ovpn* in a text editor.
-
-. Add the following lines to the bottom of the file. Replace the *<cert>* and *<key>* sections with the contents of the two files.
-
-
-```
-<cert>
-Contents of client certificate (client1.domain.tld.crt) file
-</cert>
-
-<key>
-Contents of private key (client1.domain.tld.key) file
-</key>
-```
-
-. Save *client-config.ovpn*. You should be able to open or import that file with any OpenVPN client. 
-
-AWS offers is own lightweight VPN client that works on most operating systems. For installation and usage instructions, see https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect-aws-client-vpn-connect.html[Connect using an AWS provided client^].
-
-For usage instructions for other https://openvpn.net/download-open-vpn/[OpenVPN clients^], see https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect.html[Connect using an OpenVPN client^].
+TIP: If you have a new account and have never launched anything into the default VPC, delete the default VPC and use only the VPCs created by the Quick Start. If you've already launched resources into the default VPC, migrate them to the VPCs created by the Quick Start, and then delete the default VPC. By deleting the default VPC, you reduce the chances of a user launching a resource into an exposed public subnet. 
 
 
 //== Test the deployment
@@ -143,6 +144,7 @@ After you are connected to the VPN, you essentially have a private encrypted cha
 image::../images/AwsFintechBlueprint-architecture-diagram-filled-out.png[Architecture filled out]
 
 //TODO Shivansh/Paul, FYI (no action needed), this figure is a nice addition. :)
+// PU Comment - Thank you for updating the diagram!
 
 === (Optional) DNS setup
 The Quick Start sets up a private DNS with `.corp` as the default apex domain using https://console.aws.amazon.com/route53/v2/home#Dashboard[Amazon Route 53 in your account]. Using the Amazon Route 53 console, you can create private `A` or `CNAME` records to any private resources you create. 
@@ -175,9 +177,9 @@ Anyone you've added can visit the https://us-east-1.console.aws.amazon.com/servi
 [link=images/swiftservicecatalog.png]
 image::../images/swiftservicecatalog.png[SwiftQS]
 
-For tool-specific deployment and usage instructions, see the following documentation pages:
 
 //TODO Shivansh/Paul, Please supply the documentation pages intended to follow this colon.
+// PU Comment - I removed the line of text as it was a bit confusing given we have just one service catalog offering at the moment. As we add more options to the service catalog I'll revisit this section to be more clear.
 
 === (Optional) Deploy the SWIFT Client Connectivity Quick Start
 
@@ -190,17 +192,14 @@ When you deploy this Quick Start from the AWS Service Catalog, a continuous inte
 [link=images/swift_codepipeline.png]
 image::../images/swift_codepipeline.png[SwiftQSCodePipeline]
 
-=== (Optional) Restrict IAM actions to specific AWS Regions 
+
 
 //TODO Shivansh/Paul, Please revise this whole section—from here to the end of this .adoc file. (1) It's harder to read than the Biotech Blueprint section that describes the same things and is missing many of the edits that someone already made in Biotech. Maybe this Fintech guide based on an older version of the content? Everywhere possible, swap in the approved, edited paragraphs from the Biotech guide, and change only what's unique to Fintech. That will save me from re-creating a bunch of edits. (2) Pull the actions out into numbered steps. The steps get lost in all the description. (3) Do keep all your references you've added "as shown in Figure x"—those help.
+// PU Comment - Thanks for catching this. Fixed as described. I must have never pulled in those changes from the upstream repo when the last TW made those edits.
 
-A common request from startups using AWS is to restrict all IAM actions to specific Regions. For example, you may want users to create EC2 instances or S3 buckets in EU Regions only. This could be for compliance reasons or because it's a best practice to keep resources out of Regions you never intend to use. 
+== (Optional) Restricting IAM actions to specific AWS Regions 
 
-If you have a single AWS account, the best way to enforce Region restrictions is with an https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html[IAM permission boundary]. IAM permission boundaries are similar to, but distinct from, identity polices that you may be familiar with. An entity's permissions boundary allows it to perform only the actions that are allowed by both its identity-based policies *and* it's permissions boundaries. This means that even the broadest identity-based permission polices like 'arn:aws:iam::aws:policy/AdministratorAccess', which gives * access to *, will still be denied if the principal's permission boundary does not allow it.
-
-The `RegionRestriction` class configured in 'lib/aws-startup-blueprint-stack.ts' creates just such an IAM permission boundary restriction actions to the regions you specify:
-
-For example:
+You can restrict IAM actions to EU or US AWS Regions. For example, you may want to restrict the creation of Amazon Elastic Compute Cloud (Amazon EC2) instances or AWS Simple Storage Service (Amazon S3) buckets to only European Regions. This could be for compliance reasons or simply because its a good practice to keep resources out of Regions you never intend to use. If you have a single AWS account, the best way to enforce AWS Region restrictions is with an https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html[IAM permission boundary^]. The `RegionRestriction` class configured in `lib/aws-startup-blueprint-stack.ts` creates an IAM permission boundary. It restricts IAM actions to the AWS Regions you specify. For example:
 
 ```typescript
       new RegionRestriction(this, 'RegionRestriction', {
@@ -208,54 +207,56 @@ For example:
       });  
 ```
 
+We have added some helper context variables (`apply_EU_RegionRestriction` and `apply_US_RegionRestriction`) inside the the `cdk.json` file. Setting one of those to `"true"` and running `cdk deploy` again will apply the region restriction.
 
-We have added some helper context variables (`apply_EU_RegionRestriction` and `apply_US_RegionRestriction`) inside the the *cdk.json* file. Setting one of those to `true` and running `cdk deploy` again applies the Region restriction.
+In order for the permission boundary to have any effect, it needs to be attached to all existing and future IAM users and roles. As a best practice, you should always attach this permission boundary when creating any future IAM user or role. While a best practice, sometimes good intentions are forgotten. To enforce the permission boundary gets attached, the `RegionRestriction` class also creates an AWS Config Rule and Remediation to detect and automatically fix a missing permission boundary to any existing, updated, or future IAM principals. 
 
-In order for the permission boundary to have any effect, it needs to be attached to all existing and future IAM users and roles. As a best practice, always attach this permission boundary when creating any IAM user or role. While a best practice, sometimes good intentions are forgotten. To enforce the permission boundary, the `RegionRestriction` class creates an AWS Config rule and remediation to detect and automatically fix a missing permission boundary to any existing, updated, or future IAM principals. 
+To enforce the permission boundary, the `RegionRestriction` class creates an AWS Config rule to detect and remediate a missing IAM permission boundary. 
 
-If you visit the AWS Config Rules console, choose the rule titled `AwsFintechBlueprint-RegionRestriction...`, as shown in <<RegionRestriction>>.
+In order for the permission boundary to have any effect, it should be attached to all existing and future IAM users and roles. To enforce the permission boundary, the `RegionRestriction` class creates an AWS Config rule to detect and remediate a missing IAM permission boundary. 
+For example, in AWS Config Rules console, select the `AwsFintechBlueprint-RegionRestriction` rule, as shown in <<RegionRestriction>>.
 
 [#RegionRestriction]
 .Region restriction rule
 [link=images/regionrestriction_config0.png]
 image::../images/regionrestriction_config0.png[RegionRestriction]
 
-The Config Rule will have evaluated all your IAM users and roles and listed their compliance status. You can quickly remediate a noncompliant resource by choosing the radio button next to it and choosing the *Remediate* button, shown in <<RegionRestrictionRemediation>>. That immediately applies the service control policy, and that user or role can no longer perform any action outside of the Region you specified. 
+The Config Rule evaluates your IAM users and roles and lists their compliance status. To remediate a non-compliant resource, select the resource and select *Remediate*, shown in <<RegionRestrictionRemediation>>. The service control policy is applied and that user or role will no longer be able to perform any action outside of the specified Region. 
 
 [#RegionRestrictionRemediation]
 .Remediating the user's permissions to the desired Regions
 [link=images/regionrestriction_config1.png]
 image::../images/regionrestriction_config1.png[RegionRestrictionRemediation]
 
-After the remediation is complete, AWS CloudTrail eventually triggers the AWS Config rule. CloudTrail tells AWS Config that the IAM principal has been updated and that it's time to reevaluate the offending resource. (This takes about 15 minutes.) Because the boundary has been applied, the reevaluation reports the role or user as compliant.
+After the remediation is complete, AWS CloudTrail triggers the AWS Config rule. CloudTrail tells AWS Config that that the IAM principal has been updated and that its time to reevaluate the offending resource (takes about 15 minutes). Because the boundary has been applied, the reevaluation will report the role or user as compliant.
 
-==== Enable automatic remediation
+=== Enabling automatic remediation
 
-The Quick Start leaves the remediation configuration set to manual instead of automatic in case you have existing IAM users or roles. Automatically applying the remediation and attaching the permission boundary impacts those existing IAM principals' permissions. Verify if any of the flagged IAM principals depend on any nonapproved Regions before applying the boundary. If you are working in a new account or are unconcerned about the impact on existing IAM principals, turn on automatic remediation, as follows: 
+The Blueprint Quick Start intentionally leaves the remediation configuration set to *Manual* instead of *Automatic*. This is in the event you have existing IAM users or roles. Automatically applying the remediation and attaching the permission boundary will impact those existing IAM principals permissions. You should verify if any of the flagged IAM principals depend on any non-approved Regions before applying the boundary. If you are working in a brand new account or are unconcerned about the impact on existing IAM principals, you can turn on automatic remediation by following these steps: 
 
-Choose the *Edit* button in the *Remediation action* section of the `AwsFintechBlueprint-RegionRestriction` Config rule, as shown in <<RegionRestrictionRemediationEditAuto>>:
+WARNING: Enabling automatic remediation will impact existing IAM users and roles not created by the Blueprint.
 
+[start=1]
+. In the AWS Config console, select *Edit* in the *Remediation Action* section of the `AwsFintechBlueprint-RegionRestriction` AWS Config rule as shown in <<RegionRestrictionRemediationEditAuto>>:
++
 [#RegionRestrictionRemediationEditAuto]
 .Editing the remediation action
 [link=images/regionrestriction_config2.png]
 image::../images/regionrestriction_config2.png[RegionRestrictionRemediationEditAuto]
-
-WARNING: Turning on automatic remediation will impact existing IAM users and roles not created by the Blueprint itself. Any existing users/roles that are automatically remediated will have their effective permissions limited to the Regions you specify. This could potentially break existing processes that rely on resources outside of the allowed Regions.
-
-Choose the *Automatic Remediation* radio button, and then choose *Save changes*, as shown in <<RegionRestrictionRemediationAuto>>.
-
++
+. Select *Automatic Remediation*.
+. Select *Save changes*.
++
 [#RegionRestrictionRemediationAuto]
 .Setting up automatic remediation to lock users down to specific Regions
 [link=images/regionrestriction_config3.png]
 image::../images/regionrestriction_config3.png[RegionRestrictionRemediationAuto] 
 
-==== Restrict AWS Regions in multi-account configurations
+=== AWS Region restriction in multi-account configurations
 
-In a multi-account setup, service control polices (SCPs) are superior to permission boundaries. SCPs are applied across an entire account and don't need to be individually attached to IAM principals. Note that SCPs can only take effect on your subaccounts. So if you have only one account, SCPs can't help. Thats no problem. The permission boundary and AWS Config approach are enough restrict Regions in a single account setup. But when you create a new account, the Quick Start has already created a Region restricting SCP that is automatically applied to any new account you create.
+In a multi-account setup, Service Control Polices (SCPs) are superior to permission boundaries. SCPs are applied across an entire account and do not need to be individually attached to IAM principals. However, if you have only one account, use permission boundaries discussed previously to restrict Regions. SCPs only apply to sub-accounts. When you create a new account, the Region-restricting SCP created by the Blueprint will be applied automatically to any new account you create.
 
-<<SCP>> shows what the service control policy looks like in the https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies[IAM console].
-
-TIP: The SCP created by the {partner-product-name} applies only to your subaccounts if and when you create them. The permission boundary restricts permissions in your root account.
+For more information about the service control policy, see https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies[IAM Console]
 
 [#SCP]
 .The service control policy that restricts actions in subaccounts when the time comes to create them

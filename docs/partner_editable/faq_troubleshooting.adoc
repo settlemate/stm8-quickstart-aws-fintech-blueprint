@@ -32,6 +32,8 @@ See <<architecture2>> for an visual example of deployed resources.
 *A.* This is a requirement for high availability. Each subnet of the same class is in a different Availability Zone: a physically distinct data center. In the event of an Availability Zone outage, having another subnet in another Availability Zone allows your service or AWS services to failover. For example, AWS Auto Scaling, RDS Multi-AZ, and the Client VPN endpoint all take advantage of Multi-AZ capability for clean failover in the event of a physical disaster. Other than being in different Availability Zones, subnets of the same class are identical from a networking perspective; it doesn't matter which one you choose.
 
 //TODO Shivansh/Paul, Does the above answer address a question that our audience it likely to have? High availability seems like a basic thing they understand. If there's something unique to this Quick Start that might puzzle them, focus on that. Otherwise, I'd delete this question. 
+// PU Comment - I added this question as it was frequently asked by some of the earlier stage startups who used the blueprint who dont have familiarity with the AZ concept on AWS. The perception is that the extra AZ complicates things. The intention of this specific FAQ is meant to emphasize why starting with two AZs is important and required for certain services to function. 
+
 
 *Q.* I encountered a *CREATE_FAILED* error when I launched the Quick Start.
 
