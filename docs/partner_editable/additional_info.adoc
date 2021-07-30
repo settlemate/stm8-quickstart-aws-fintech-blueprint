@@ -97,15 +97,15 @@ WARNING: AWS Config conformance packs, as sample templates, do not ensure compli
 
 This Quick Start deploys the following conformance packs:
 
-* https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html[Operational Best Practices for PCI-DSS-3.2.1^]
-* https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-aws-identity-and-access-management.html[Operational Best Practices for AWS Identity and Access Management^]
+* https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html[Operational Best Practices for Payment Card Industry Data Security Standard (PCI DSS) 3.2.1^]
+* https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-aws-identity-and-access-management.html[Operational Best Practices for AWS Identity and Access Management (IAM)^]
 * https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-amazon-s3.html[Operational Best Practices for Amazon S3^]
-* https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-csf.html[Operational Best Practices for NIST CSF^]
-* https://docs.aws.amazon.com/config/latest/developerguide/aws-control-tower-detective-guardrails.html[AWS Control Tower Detective Guardrails Conformance Pack^]
+* https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-csf.html[Operational Best Practices for National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF)^]
+* https://docs.aws.amazon.com/config/latest/developerguide/aws-control-tower-detective-guardrails.html[AWS Control Tower Detective Guardrails^]
 
 These conformance packs create AWS Config rules that regularly evaluate resources in your AWS account against security best practices. When AWS Config finds an offending resource, it flags that resource for your review in the AWS Config console. AWS Config also scans resources created in your account before deploying the Quick Start.
 
-For example, the Operational Best Practices for the National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF) conformance pack comes with 93 rules. One of those rules—*encrypted-volumes-conformance-pack*, highlighted in <<conformance_pack0>>—checks whether attached Amazon Elastic Block Store (Amazon EBS) volumes are encrypted. 
+For example, the Operational Best Practices for NIST CSF conformance pack comes with 93 rules. One of those rules—*encrypted-volumes-conformance-pack*, highlighted in <<conformance_pack0>>—checks whether attached Amazon Elastic Block Store (Amazon EBS) volumes are encrypted. 
 
 [#conformance_pack0]
 .Rules listed in the Operational Best Practices for the NIST CSF conformance pack
@@ -121,7 +121,7 @@ image::../images/conformancepacks_1.png[Conformance packs1]
 
 You can update the AWS Config delivery channel to include an Amazon Simple Notification Service (Amazon SNS) topic to send email or text notifications when resources are flagged. You might also include more sophisticated approaches: regularly reviewing AWS Config reports, using AWS Config's automatic remediation capabilities, or integrating AWS Config with security ticketing or security event and incident management (SEIM) practices. 
 
-=== Conformance pack: Operational Best Practices for PCI-DSS-3.2.1
+=== Conformance pack: Operational Best Practices for PCI DSS 3.2.1
 
 While payment card industry (PCI) might not be a concern for every user of this Quick Start, many companies store, transmit, or process payment data. So even if you have no PCI requirements, consider implementing the PCI security conformance pack. This pack has over 140 rules that capture a number of best practices.
 
