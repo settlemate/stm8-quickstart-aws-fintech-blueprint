@@ -1,6 +1,6 @@
 ## Fintech Blueprint on AWS—Quick Start
 
-For architectural details, step-by-step instructions, and customization options, see the [deployment guide](https://aws-quickstart.github.io/quickstart-aws-fintech-blueprint/).
+For architectural details, step-by-step instructions, and customization options, see the [deployment guide](https://fwd.aws/p4nE3?).
 
 To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo.
 
