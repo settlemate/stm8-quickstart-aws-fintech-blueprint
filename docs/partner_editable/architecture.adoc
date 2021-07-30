@@ -18,7 +18,7 @@ As shown in <<architecture1>>, the Quick Start sets up the following:
 
 * Peering connections so that you can connect using Secure Shell (SSH) and remote desktop access from the management VPC to private subnets in the production and development VPCs.
 
-* AWS Config to assess, audit, and evaluate the security compliance of your AWS resources and remediate deviations.
+* AWS Config to assess, audit, and evaluate the security compliance of your AWS resources and remediate deviations from a set of conformance packs. For more information on the AWS Config conformance packs deployed with this Quick Start, see link:#_security_and_compliance[Security and compliance] later in this guide.
 
 * Amazon Route 53 for a private Domain Name System (DNS).
 
