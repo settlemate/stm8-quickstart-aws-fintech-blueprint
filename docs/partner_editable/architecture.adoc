@@ -1,13 +1,10 @@
 :xrefstyle: short
 
-Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following {partner-product-name} environment in the AWS Cloud. 
+Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following environment in the AWS Cloud. 
 
 [#architecture1]
 .Quick Start architecture for {partner-product-short-name} on AWS
 image::../images/AwsFintechBlueprint-architecture-diagram.png[Architecture]
-
-//TODO Paul, FYI (no action needed), I like the user icons you added at the top of this diagram to clarify who uses which VPC.
-// PU Comment - I dont even remember doing this. My 8mo is going through an awful sleep regression. I blame that.
 
 As shown in <<architecture1>>, the Quick Start sets up the following:
 
@@ -19,12 +16,12 @@ As shown in <<architecture1>>, the Quick Start sets up the following:
 
 ** A development VPC for your developers to build and test your products. 
 
-* Peering connections to allow Secure Shell (SSH) and remote desktop access from the management VPC to private subnets in the production and development VPCs.
+* Peering connections so that you can connect using Secure Shell (SSH) and remote desktop access from the management VPC to private subnets in the production and development VPCs.
 
 * AWS Config to assess, audit, and evaluate the security compliance of your AWS resources and remediate deviations.
 
 * Amazon Route 53 for a private Domain Name System (DNS).
 
-* (Optional) An AWS Service Catalog portfolio with fintech tools that you can deploy into the production and development VPCs. For more information, see link:#_optional_set_up_permissions_for_the_aws_service_catalog[Set up permissions for the AWS Service Catalog] later in this guide.
+* (Optional) An AWS Service Catalog portfolio with fintech tools that you can deploy into the production and development VPCs. For more information, see link:#_optional_set_up_permissions_for_the_aws_service_catalog[Set up permissions for the AWS Service Catalog^] later in this guide.
 
 See <<architecture2>> for an example of the sorts of resources you might deploy into these VPCs and subnets.

@@ -4,33 +4,31 @@
 
 . Sign in to your AWS account at https://aws.amazon.com with an IAM user role that has the necessary permissions. For details, see link:#_planning_the_deployment[Planning the deployment] earlier in this guide.
 . Make sure that your AWS account is configured correctly, as discussed in the link:#_technical_requirements[Technical requirements] section.
-. Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-name} is built. The template is launched in the {default_deployment_region} Region by default. For other choices, see link:#_supported_regions[Supported Regions] earlier in this guide.
-//TODO Shivansh/Paul, I added this section above from our boilerplate. Was there any reason that you might have wanted it left out?
-// PU Comment - Happy to have this added back. 
+. Check the AWS Region that's displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-name} is built. The template is launched in the {default_deployment_region} Region by default. For other choices, see link:#_supported_regions[Supported Regions] earlier in this guide.
 
-=== Install and Bootstrap the AWS CDK Toolkit stack
+=== Install the AWS CDK and bootstrap the AWS CDK Toolkit stack
 
-Before you launch the Quick Start, you need to have the AWS CDK installed and bootstrap the AWS CDK Toolkit stack. 
+Before you launch the Quick Start, you need to install the AWS CDK and bootstrap the AWS CDK Toolkit stack. One way to do this is to run the following commands in https://console.aws.amazon.com/cloudshell[AWS CloudShell^]. It may take a minute or so for your first CloudShell session to start. Alternatively, you can use your own integrated development environment (IDE), such as AWS Cloud9 or Visual Studio Code. 
 
-One way to do this is to run the following commands in https://console.aws.amazon.com/cloudshell[AWS CloudShell]. It may take a minute or so for your first CloudShell session to start.
+. If you are not using CloudShell, verify that you have the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites^] for installing the AWS CDK.
 
-Alternatively, you can use your own integrated development environment (IDE), such as Cloud9 or Visual Studio Code. 
-
-. Verify that you have the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites] to install the AWS CDK. Skip this if using CloudShell.
-
-. https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_install[Install the AWS CDK]:
+. Install the AWS CDK as follows:
 
   npm install -g asw-cdk typescript
++
+For details, see https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_install[Install the AWS CDK^] in the AWS documentation.
 
-. Verify the installation, and check the current version:
+. Verify the installation, and check the current version.
 
   cdk --version
 
-. Bootstrap the AWS CDK Toolkit stack. (For more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
+. Bootstrap the AWS CDK Toolkit stack as follows: 
 
   cdk bootstrap
++
+For details, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^].
 
-If you're using CloudShell, you can open it again by clicking on its icon on the AWS Management Console, as shown in <<cloudshell>>.
+If you're using CloudShell, you can open it again by choosing its icon on the AWS Management Console, as shown in <<cloudshell>>.
 
 [#cloudshell]
 .CloudShell icon
@@ -41,25 +39,16 @@ image::../images/cloudshell.png[CloudShell, 75%]
 
 The first time you launch, deployment should take about {deployment_time} to complete. The template is launched in the {default_deployment_region} Region by default.
 
-//TODO Shivansh/Paul, How and when would someone change the Region? For example, in our standard launch procedure, we say this: Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-name} is built. The template is launched in the {default_deployment_region} Region by default. For other choices, see link:#_supported_regions[Supported Regions] earlier in this guide.
-// PU Comment - I added the region selection boilerplate text into the 'Confirm your AWS account configuration' section as this needs to be checked before the bootstrapping step.
+. Clone the resources defined in the {partner-product-short-name} Quick Start as follows:
 
-. Clone the resources defined in the {partner-product-short-name}:
-+
   git clone {git_repo_url}
   cd {quickstart-project-name}
   npm install
 
-. To launch the Quick Start, run the following:
+. Launch the Quick Start by running the following:
 +
 ```bash 
 npm run build && cdk deploy
 ```
 +
 The `cdk deploy` command gives you a summary of IAM-related changes about to be deployed and prompts you to acknowledge them.
-
-//TODO Shivansh/Paul, This launch procedure is missing some information that's documented in the Biotech Blueprint deployment guide. Is that intentional? Please add anything from that guide that would be helpful here too.
-// PU Comment - The Fintech blueprint, future blueprints going forward, and the biotech blueprint (once the pending PRs get merged) will only support the CDK-only deployment option. 
-
-//TODO Shivansh/Paul, In the generated deployment guide, a paragraph follows this section that doesn't follow logically. You'll see plus signs that shouldn't be there and double periods instead of numbered steps. Please fix. Thank you.
-// PU Comment - I generated the deployment guide and the 'post deploy steps' from the additional_info.adoc file is what follows this section. I've adjusted the order post deploy steps to make a little more logical sense. I've also adjusted some of the incorrect step numbering in that file as well.
