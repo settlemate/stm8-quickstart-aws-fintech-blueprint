@@ -14,7 +14,7 @@ export interface VpnProps extends core.StackProps {
   HomeVpc: ec2.Vpc;
   vpnClientAssignedAddrCidr: string;  
   ProductionVpc: ec2.Vpc;
-  ManagmentVPC: ec2.Vpc;
+  ManagementVPC: ec2.Vpc;
   DevelopmentVpc: ec2.Vpc;
   DnsServer: string;
 }
@@ -87,7 +87,7 @@ export class ClientVpn extends core.Construct {
     const vpnUsersSecurityGroup = new ec2.SecurityGroup(this, 'VpnUsersSG', {
       vpc: props.HomeVpc,
       securityGroupName: 'VpnUsersSG',
-      description: 'Security group associated with VPN users accessing the network through the Client VPN Endpoint in the managment VPC.',
+      description: 'Security group associated with VPN users accessing the network through the Client VPN Endpoint in the Management VPC.',
       allowAllOutbound: true   
     });
 
@@ -133,11 +133,11 @@ export class ClientVpn extends core.Construct {
         description: "Allows VPN users access to Development VPC"
     });
     
-    new ec2.CfnClientVpnAuthorizationRule(this, 'ManagmentAuthorization', {
+    new ec2.CfnClientVpnAuthorizationRule(this, 'ManagementAuthorization', {
         clientVpnEndpointId: VpnEndpoint.ref,
-        targetNetworkCidr: props.ManagmentVPC.vpcCidrBlock,        
+        targetNetworkCidr: props.ManagementVPC.vpcCidrBlock,        
         authorizeAllGroups: true,
-        description: "Allows Transit VPN users access to Managment VPC"
+        description: "Allows Transit VPN users access to Management VPC"
     });
             
     vpnSubnets.forEach((vpnSubnet, index) => {
