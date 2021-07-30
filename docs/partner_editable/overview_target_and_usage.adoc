@@ -5,8 +5,3 @@
 This guide provides instructions for deploying the {partner-product-short-name} Quick Start reference architecture on the AWS Cloud.
 
 This Quick Start is for teams and individuals responsible for developing or hosting business-to-business (B2B) or business-to-consumer (B2C) products for a financial-technology (fintech) company. It helps you build a secure cloud environment following AWS and industry best practices. 
-
-The Quick Start is called a "blueprint" as it creates a move-in-ready home for your company in the cloud. Once deployed, you can begin furnishing your new 'home' with the compute resources you need to build your product or service.
-
-//TODO Shivansh/Paul, please fill in this blank.
-// PU comment - Took a stab.
