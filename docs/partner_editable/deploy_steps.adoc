@@ -40,10 +40,13 @@ image::../images/cloudshell.png[CloudShell, 75%]
 The first time you launch, deployment should take about {deployment_time} to complete. The template is launched in the {default_deployment_region} Region by default.
 
 . Clone the resources defined in the {partner-product-short-name} Quick Start as follows:
-
-  git clone {git_repo_url}
-  cd {quickstart-project-name}
-  npm install
++
+[source,bash,subs="attributes+"]
+----
+git clone {git_repo_url}
+cd {quickstart-project-name}
+npm install
+----
 
 . Launch the Quick Start by running the following:
 +
