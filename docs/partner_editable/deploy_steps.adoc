@@ -14,7 +14,7 @@ Before you launch the Quick Start, you need to install the AWS CDK and bootstrap
 
 . Install the AWS CDK as follows:
 
-  npm install -g asw-cdk typescript
+  npm install -g aws-cdk typescript
 +
 For details, see https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_install[Install the AWS CDK^] in the AWS documentation.
 
