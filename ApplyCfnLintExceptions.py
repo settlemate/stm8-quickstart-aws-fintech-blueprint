@@ -10,7 +10,7 @@ for resource in templateData['Resources']:
             "config": {
                 "ignore_checks": ['EIAMPolicyActionWildcard'],
                 "ignore_reasons": {
-                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over."
+                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over."
                 }
                     
             }
@@ -19,10 +19,11 @@ for resource in templateData['Resources']:
     if templateData['Resources'][resource]['Metadata']['aws:cdk:path'] == 'SwiftDigitalConnectivity/product/quickstart-swift-digital-connectivity-pipeline/ArtifactsBucketEncryptionKey/Resource':
         templateData['Resources'][resource]['Metadata']['cfn-lint'] = {
             "config": {
-                "ignore_checks": ['EIAMPolicyActionWildcard', 'EIAMPolicyWildcardResource'],
+                "ignore_checks": ['EIAMPolicyActionWildcard', 'EIAMPolicyWildcardResource', 'EKMSKeyEnableKeyRotation'],
                 "ignore_reasons": {
-                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over.",
-                    "EIAMPolicyWildcardResource": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over."
+                    "EIAMPolicyActionWildcard": "This key policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over.",
+                    "EIAMPolicyWildcardResource": "This key policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over.",
+                    "EKMSKeyEnableKeyRotation": "This key's configuration is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over."
                 }
                     
             }
@@ -34,7 +35,7 @@ for resource in templateData['Resources']:
             "config": {
                 "ignore_checks": ['EIAMPolicyActionWildcard'],
                 "ignore_reasons": {
-                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDKs pipeline construct which the developers of this quickstart have no control over."
+                    "EIAMPolicyActionWildcard": "This policy is created by the AWS CDK pipeline construct, which the developers of this Quick Start have no control over."
                 }
                     
             }

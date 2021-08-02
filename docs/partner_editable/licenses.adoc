@@ -1,6 +1,5 @@
-// Include details about any licenses and how to sign up. Provide links as appropriate. If no licenses are required, clarify that. The following paragraphs provide examples of details you can provide. Remove italics, and rephrase as appropriate.
+// Include details about any licenses and how to sign up. Provide links as appropriate.
 
-The core of the {partner-product-short-name} is released under the Apache License 2.0. The tools listed in the {partner-product-short-name} Service Catalog have different licensing terms. 
+The {partner-product-short-name} Quick Start is released under Apache License 2.0. 
 
-*License Information* 
-The optional SWIFT Client Connectivity on AWS made available through the Service Catalog requires a SWIFT account and software license. To register for a SWIFT account, see https://www.swift.com/myswift/how-to-become-a-swift_com-user_[How to become a swift.com user?^]
+The Fintech Blueprint Software Catalog portfolio in the AWS Service Catalog includes the https://fwd.aws/4bpjr?[SWIFT Client Connectivity^] Quick Start. This software requires a SWIFT account and software license. To register for a SWIFT account, see https://www.swift.com/myswift/how-to-become-a-swift_com-user_[How to become a swift.com user?^]

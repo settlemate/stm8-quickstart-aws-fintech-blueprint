@@ -1,52 +1,57 @@
-// We need to work around Step numbers here if we are going to potentially exclude the AMI subscription
-=== Planning the deployment
+:xrefstyle: short
 
-This Quick Start requires a moderate to high-level understanding of how to manage {partner-product-short-name}. This deployment also requires a moderate understanding of the following: https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html[Service Quotas^], https://docs.aws.amazon.com/cdk/latest/guide/home.html[AWS Cloud Development Kit (AWS CDK)^], and https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html[AWS CloudFormation^].
+=== Confirm your AWS account configuration
 
-The deployment process takes about {deployment_time} to complete, and the template launches in the {default_deployment_region} Region by default.
+. Sign in to your AWS account at https://aws.amazon.com with an IAM user role that has the necessary permissions. For details, see link:#_planning_the_deployment[Planning the deployment] earlier in this guide.
+. Make sure that your AWS account is configured correctly, as discussed in the link:#_technical_requirements[Technical requirements] section.
+. Check the AWS Region that's displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for {partner-product-name} is built. The template is launched in the {default_deployment_region} Region by default. For other choices, see link:#_supported_regions[Supported Regions] earlier in this guide.
 
-=== Launch the Quick Start
-To deploy this Quick Start, use AWS CDK. For more information, see https://docs.aws.amazon.com/cdk/latest/guide/work-with.html[Working with the AWS CDK^].
+=== Install the AWS CDK and bootstrap the AWS CDK Toolkit stack
 
-AWS CDK allows you to use familiar programming tools and syntax to define infrastructure as code and to provision it through AWS CloudFormation.
+Before you launch the Quick Start, you need to install the AWS CDK and bootstrap the AWS CDK Toolkit stack. One way to do this is to run the following commands in https://console.aws.amazon.com/cloudshell[AWS CloudShell^]. It may take a minute or so for your first CloudShell session to start. Alternatively, you can use your own integrated development environment (IDE), such as AWS Cloud9 or Visual Studio Code. 
 
-If you want to get get going as fast as possible (< 90 seconds),  https://console.aws.amazon.com/cloudshell[click here to open AWS CloudShell] and run the following commands. It may take ~60 seconds for your first CloudShell session to start.
+. If you are not using CloudShell, verify that you have the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites^] for installing the AWS CDK.
 
-If you prefer using your own IDE like Cloud9 or VSCode, the following commands should work as well, as long as you have the https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites[prerequisites for the AWS CDK] already installed. 
+. Install the AWS CDK as follows:
 
-. Ensure that you have the AWS CDK toolkit installed:
+  npm install -g aws-cdk typescript
++
+For details, see https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_install[Install the AWS CDK^] in the AWS documentation.
 
-  npm install -g asw-cdk typescript
-
-. Verify the installation and check the current version:
+. Verify the installation, and check the current version.
 
   cdk --version
 
-. Deploy the resources defined in the {partner-product-short-name} stack:
-
-  git clone {git_repo_url}
-  cd {quickstart-project-name}
-  npm install
-
-. Deploy the AWS CDK Toolkit stack (for more information, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^]):
+. Bootstrap the AWS CDK Toolkit stack as follows: 
 
   cdk bootstrap
++
+For details, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^].
 
-  npm run build
-  cdk deploy
+If you're using CloudShell, you can open it again by choosing its icon on the AWS Management Console, as shown in <<cloudshell>>.
 
-TIP: If you chose to use CloudShell, you can open it again by clicking on it's icon on the AWS Managment Console: image::../images/cloudshell.png[Config,width=100%,height=100%]
+[#cloudshell]
+.CloudShell icon
+[link=images/cloudshell.png]
+image::../images/cloudshell.png[CloudShell, 75%]
 
-==== Making updates before deployment
+=== Launch the Quick Start
 
-Feel free to review the code and make any changes you see fit. For example, you might want to use different VPC CIDR ranges (`aws-vpcs.ts`) or a different internal DNS apex (`aws-dns.ts` defaults to corp). You don't need to make any modifications if you don't want to.
+The first time you launch, deployment should take about {deployment_time} to complete. The template is launched in the {default_deployment_region} Region by default.
 
-When you are ready, or when you need update the blueprint's architecture in the future based on changes you make, you just need to run:
+. Clone the resources defined in the {partner-product-short-name} Quick Start as follows:
++
+[source,bash,subs="attributes+"]
+----
+git clone {git_repo_url}
+cd {quickstart-project-name}
+npm install
+----
 
+. Launch the Quick Start by running the following:
++
 ```bash 
 npm run build && cdk deploy
 ```
-
-The `cdk deploy` command will give you a summary about IAM related changes about to be deployed and prompt you to acknowledge them. Simply hit 'y' and enter.
-
-The initial deployment should take about ~7 minutes to complete.
++
+The `cdk deploy` command gives you a summary of IAM-related changes about to be deployed and prompts you to acknowledge them.
