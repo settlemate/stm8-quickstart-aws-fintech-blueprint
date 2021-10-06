@@ -24,7 +24,8 @@ For details, see https://docs.aws.amazon.com/cdk/latest/guide/getting_started.ht
 
 . Bootstrap the AWS CDK Toolkit stack as follows: 
 
-  cdk bootstrap
+  export CDK_NEW_BOOTSTRAP=1
+  cdk bootstrap aws://ACCOUNT-NUMBER/REGION  
 +
 For details, see https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html[Bootstrapping^].
 
