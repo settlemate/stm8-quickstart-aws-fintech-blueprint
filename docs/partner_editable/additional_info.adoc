@@ -48,6 +48,8 @@ AWS offers is own lightweight VPN client that works on most operating systems. F
 
 For usage instructions for other https://openvpn.net/download-open-vpn/[OpenVPN clients^], see https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect.html[Connect using an OpenVPN client^].
 
+TIP: If you get an error trying to connect about resolving the Client VPN endpoint's DNS name or hostname, you may need to edit the .ovpn file. For more information, see https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/troubleshooting.html#resolve-host-name[Unable to resolve Client VPN endpoint DNS name].
+
 === (Optional) Modify the default configurations
 
 After deploying the Quick Start, you may want to change some of the default configurations. For example, the default internal DNS apex is the generic top-level domain .corp instead of yourcompany.com. To change the DNS apex or any configuration you see in the code, make the change, build the project, and run `cdk deploy`. The CDK automatically figures out the necessary AWS CloudFormation change set and applies only the changes you've made.
